@@ -55,7 +55,7 @@ public class Blob extends Folder{
 
         String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 
-        return content.equals(node.textual_content);
+        return !content.equals(node.textual_content);
     }
 
     static public boolean file_exist(Blob blob, String path){

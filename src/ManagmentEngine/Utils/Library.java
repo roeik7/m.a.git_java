@@ -127,11 +127,11 @@ public class Library extends Folder {
 
         for (int i = 0; i <node.getChilds().size() && !modified; i++) {
             if (node.getChilds().get(i).getType().equals("blob")) {
-                modified = Blob.file_exist((Blob)node.getChilds().get(i),path+"\\"+node.getName());
+                modified = !Blob.file_exist((Blob)node.getChilds().get(i),path+"\\"+node.getName());
             }
 
             else{
-                modified = directory_exist(node.getChilds().get(i), path+"\\"+node.getName());
+                modified = !directory_exist(node.getChilds().get(i), path+"\\"+node.getName());
             }
         }
 

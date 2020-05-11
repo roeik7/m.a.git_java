@@ -13,8 +13,14 @@ public class Main {
         xml.xml_is_valid("C:\\Users\\roik\\Desktop\\ex1-medium.xml");
         x.initalize_repository(xml, false);
         int r=4;
+        System.out.println("show working copy area:\n");
+        Scanner stdin = new Scanner(System.in);
+        stdin.nextLine();
+        System.out.println(x.working_copy_area_status());
         //x.create_magit_file("C:\\Users\\roik\\Desktop");
-
+        int c=4;
+        System.out.println(x.working_copy_area_status());
+        int bla=23;
         //execute_operations();
     }
 

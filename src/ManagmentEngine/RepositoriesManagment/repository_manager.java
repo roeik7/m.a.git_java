@@ -68,7 +68,7 @@ public class repository_manager {
             Library root = find_root_library_by_sha1(current_commit.getMain_library_sha1());
 
             for (int i = 0; i <root.getChilds().size() ; i++) {
-                library_changes += find_working_copy_changes(root.getChilds().get(i), repository_path+"\\.magit\\objects");
+                library_changes += find_working_copy_changes(root.getChilds().get(i), repository_path);
 
             }
         } catch (IOException e) {
@@ -335,7 +335,7 @@ public class repository_manager {
         Library lib;
 
         if(root.getType().equals("blob")){
-            root.create_local_file(root, path);
+            //root.create_local_file(root, path);
             return;
         }
         lib = (Library)root;

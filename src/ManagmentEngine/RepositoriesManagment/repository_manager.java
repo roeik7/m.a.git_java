@@ -117,12 +117,12 @@ public class repository_manager {
         if (exist) {
             is_modified = library.directory_content_is_changed(library, path);
             if (is_modified){
-                res="Directory: "+library.getName()+" is modified.\n";
+                res+="Directory: "+library.getName()+" is modified.\n";
             }
         }
 
         else{
-            res="Directory: "+library.getName()+" is removed/renamed.\n";
+            res+="Directory: "+library.getName()+" is removed/renamed.\n";
         }
 
 

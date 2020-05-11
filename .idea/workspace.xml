@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25532d93-9b9e-4c8c-9d2e-e26d3eb96ccc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/M.A.Git/UI/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/M.A.Git/UI/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Blob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Blob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Library.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -74,13 +68,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="9" />
-          <entry key="java" value="19407" />
+          <entry key="java" value="19413" />
           <entry key="xsd" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="19407" />
+          <entry key="JAVA" value="19413" />
           <entry key="PLAIN_TEXT" value="9" />
           <entry key="XML" value="1" />
         </counts>
@@ -89,11 +83,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UI/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+            <state relative-caret-position="119">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#handle_update_user_name#0;class#Main#0" />
@@ -114,11 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="117" column="53" lean-forward="true" selection-start-line="117" selection-start-column="53" selection-end-line="117" selection-end-column="53" />
+            <state relative-caret-position="85">
+              <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
               <folding>
                 <element signature="e#0#8145#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -308,9 +302,9 @@
       <find>getl</find>
       <find>init</find>
       <find>write</find>
-      <find>to_</find>
-      <find>cop</find>
       <find>to</find>
+      <find>cop</find>
+      <find>to_</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -363,8 +357,8 @@
         <option value="$PROJECT_DIR$/src/ManagmentEngine/Utils/Commit.java" />
         <option value="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java" />
         <option value="$PROJECT_DIR$/src/ManagmentEngine/Utils/Blob.java" />
-        <option value="$PROJECT_DIR$/src/UI/Main.java" />
         <option value="$PROJECT_DIR$/src/ManagmentEngine/Utils/Library.java" />
+        <option value="$PROJECT_DIR$/src/UI/Main.java" />
       </list>
     </option>
   </component>
@@ -443,7 +437,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589193995634" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589194926732" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -501,15 +495,16 @@
       <option name="presentableId" value="Default" />
       <updated>1588766626359</updated>
       <workItem from="1588766630688" duration="967000" />
-      <workItem from="1588837249862" duration="102364000" />
+      <workItem from="1588837249862" duration="102852000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103331000" />
+    <option name="totallyTimeSpent" value="103819000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
@@ -524,9 +519,9 @@
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32991204" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.3856305" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.3856305" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.4692082" />
+      <window_info active="true" anchor="bottom" id="Debug" order="8" visible="true" weight="0.4692082" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="11" />
@@ -584,189 +579,175 @@
           <url>file://$PROJECT_DIR$/src/UI/Main.java</url>
           <line>20</line>
           <properties />
-          <option name="timeStamp" value="421" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>63</line>
-          <properties />
-          <option name="timeStamp" value="423" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>66</line>
-          <properties />
-          <option name="timeStamp" value="424" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>69</line>
-          <properties />
-          <option name="timeStamp" value="425" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>70</line>
-          <properties />
-          <option name="timeStamp" value="426" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>84</line>
-          <properties />
-          <option name="timeStamp" value="427" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>86</line>
-          <properties />
-          <option name="timeStamp" value="428" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>87</line>
-          <properties />
-          <option name="timeStamp" value="429" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>89</line>
-          <properties />
-          <option name="timeStamp" value="430" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>90</line>
-          <properties />
-          <option name="timeStamp" value="431" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>91</line>
-          <properties />
-          <option name="timeStamp" value="432" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>93</line>
-          <properties />
-          <option name="timeStamp" value="433" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>94</line>
-          <properties />
-          <option name="timeStamp" value="434" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>96</line>
-          <properties />
-          <option name="timeStamp" value="435" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>97</line>
-          <properties />
-          <option name="timeStamp" value="436" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>101</line>
-          <properties />
-          <option name="timeStamp" value="437" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>103</line>
-          <properties />
-          <option name="timeStamp" value="438" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>105</line>
-          <properties />
-          <option name="timeStamp" value="439" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>108</line>
-          <properties />
-          <option name="timeStamp" value="440" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>110</line>
-          <properties />
-          <option name="timeStamp" value="441" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>111</line>
-          <properties />
-          <option name="timeStamp" value="442" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>112</line>
-          <properties />
-          <option name="timeStamp" value="443" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>114</line>
-          <properties />
-          <option name="timeStamp" value="444" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>116</line>
-          <properties />
-          <option name="timeStamp" value="445" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>118</line>
-          <properties />
-          <option name="timeStamp" value="446" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>119</line>
-          <properties />
-          <option name="timeStamp" value="447" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>123</line>
-          <properties />
-          <option name="timeStamp" value="448" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>124</line>
-          <properties />
-          <option name="timeStamp" value="449" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>128</line>
-          <properties />
-          <option name="timeStamp" value="450" />
+          <option name="timeStamp" value="458" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/UI/Main.java</url>
           <line>22</line>
           <properties />
-          <option name="timeStamp" value="451" />
+          <option name="timeStamp" value="459" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
-          <line>62</line>
-          <properties class="ManagmentEngine.RepositoriesManagment.repository_manager" method="working_copy_area_status">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="422" />
+          <line>84</line>
+          <properties />
+          <option name="timeStamp" value="460" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>85</line>
+          <properties />
+          <option name="timeStamp" value="461" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>86</line>
+          <properties />
+          <option name="timeStamp" value="462" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>89</line>
+          <properties />
+          <option name="timeStamp" value="463" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>101</line>
+          <properties />
+          <option name="timeStamp" value="464" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>96</line>
+          <properties />
+          <option name="timeStamp" value="465" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>97</line>
+          <properties />
+          <option name="timeStamp" value="466" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>98</line>
+          <properties />
+          <option name="timeStamp" value="467" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>99</line>
+          <properties />
+          <option name="timeStamp" value="468" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>102</line>
+          <properties />
+          <option name="timeStamp" value="469" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>103</line>
+          <properties />
+          <option name="timeStamp" value="470" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>105</line>
+          <properties />
+          <option name="timeStamp" value="471" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>110</line>
+          <properties />
+          <option name="timeStamp" value="472" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>111</line>
+          <properties />
+          <option name="timeStamp" value="473" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>112</line>
+          <properties />
+          <option name="timeStamp" value="474" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>114</line>
+          <properties />
+          <option name="timeStamp" value="475" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>116</line>
+          <properties />
+          <option name="timeStamp" value="476" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>117</line>
+          <properties />
+          <option name="timeStamp" value="477" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>118</line>
+          <properties />
+          <option name="timeStamp" value="478" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>119</line>
+          <properties />
+          <option name="timeStamp" value="479" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>123</line>
+          <properties />
+          <option name="timeStamp" value="480" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>124</line>
+          <properties />
+          <option name="timeStamp" value="481" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>125</line>
+          <properties />
+          <option name="timeStamp" value="482" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>90</line>
+          <properties />
+          <option name="timeStamp" value="483" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>91</line>
+          <properties />
+          <option name="timeStamp" value="484" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>93</line>
+          <properties />
+          <option name="timeStamp" value="485" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java</url>
+          <line>94</line>
+          <properties />
+          <option name="timeStamp" value="486" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1197,31 +1178,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="117" column="53" lean-forward="true" selection-start-line="117" selection-start-column="53" selection-end-line="117" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#8145#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="method#all_commit_libraries#0;class#repository_manager#0" />
-            <element signature="method#find_folder_by_sha1#0;class#repository_manager#0" />
-            <element signature="method#get_library_details#0;class#repository_manager#0" />
-            <element signature="method#find_commit_by_id#0;class#repository_manager#0" />
-            <element signature="method#find_current_commit#0;class#repository_manager#0" />
-            <element signature="method#find_folder_by_id#0;class#repository_manager#0" />
-            <element signature="method#find_root_folder#0;class#repository_manager#0" />
-            <element signature="method#create_libraries_structure#0;class#repository_manager#0" />
-            <element signature="method#get_library_by_id#0;class#repository_manager#0" />
-            <element signature="method#get_blob_by_id#0;class#repository_manager#0" />
-            <element signature="method#create_objects_and_branches#0;class#repository_manager#0" />
-            <element signature="method#create_magit_directory#0;class#repository_manager#0" />
-            <element signature="method#repository_exist#0;class#repository_manager#0" />
-            <element signature="method#delete_repository#0;class#repository_manager#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Library.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="62">
@@ -1247,11 +1203,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UI/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+        <state relative-caret-position="119">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#handle_update_user_name#0;class#Main#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
+          <folding>
+            <element signature="e#0#8145#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#all_commit_libraries#0;class#repository_manager#0" />
+            <element signature="method#find_folder_by_sha1#0;class#repository_manager#0" />
+            <element signature="method#get_library_details#0;class#repository_manager#0" />
+            <element signature="method#find_commit_by_id#0;class#repository_manager#0" />
+            <element signature="method#find_current_commit#0;class#repository_manager#0" />
+            <element signature="method#find_folder_by_id#0;class#repository_manager#0" />
+            <element signature="method#find_root_folder#0;class#repository_manager#0" />
+            <element signature="method#create_libraries_structure#0;class#repository_manager#0" />
+            <element signature="method#get_library_by_id#0;class#repository_manager#0" />
+            <element signature="method#get_blob_by_id#0;class#repository_manager#0" />
+            <element signature="method#create_objects_and_branches#0;class#repository_manager#0" />
+            <element signature="method#create_magit_directory#0;class#repository_manager#0" />
+            <element signature="method#repository_exist#0;class#repository_manager#0" />
+            <element signature="method#delete_repository#0;class#repository_manager#0" />
           </folding>
         </state>
       </provider>

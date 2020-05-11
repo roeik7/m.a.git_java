@@ -21,8 +21,9 @@ public class Library extends Folder {
         return childs;
     }
 
-
-//need to initialize all fields here and not in manager
+    public void setIs_root(boolean is_root) {
+        this.is_root = is_root;
+    }
 
     public void update_library_after_childs_creation(MagitSingleFolder magit_curr_library) throws ParseException {
         try {
@@ -74,6 +75,10 @@ public class Library extends Folder {
 
     public void add_child(Folder node){
         childs.add(node);
+    }
+
+    public void setChilds(ArrayList<Folder> childs) {
+        this.childs = childs;
     }
 
     public void update_lib_sha1() {
@@ -142,4 +147,19 @@ public class Library extends Folder {
     public void create_local_file(Folder node, String path) {
         new File(path+"\\"+node.getName()).mkdir();
     }
+
+    public Library create_commited_library(ArrayList<Folder> childs, String name, String last_updater, boolean is_root) throws NoSuchAlgorithmException, UnsupportedEncodingException, ParseException {
+        Library new_lib = new Library(is_root);
+        new_lib.setChilds(childs);
+        new_lib.setName(name);
+        new_lib.setLast_updater(last_updater);
+        new_lib.setLast_update(get_current_time());
+        new_lib.setType("library");
+        String library_content = create_library_textual_content();
+        new_lib.setTextual_content(library_content);
+        new_lib.setSha1(get_sha1(library_content));
+
+        return new_lib;
+    }
+
 }

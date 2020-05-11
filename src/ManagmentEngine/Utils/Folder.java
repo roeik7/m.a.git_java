@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -75,7 +76,6 @@ public abstract class Folder {
         return type;
     }
 
-
     public String getName() {
         return file_name;
     }
@@ -96,8 +96,13 @@ public abstract class Folder {
         this.file_name = name;
     }
 
-
     public void setSha1(String sha1_content) {
         this.sha1 = sha1_content;
+    }
+
+    static protected Date get_current_time() throws ParseException {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy-HH:mm:ss:SSS");
+        return sdf.parse(sdf.format(new Date()));
     }
 }

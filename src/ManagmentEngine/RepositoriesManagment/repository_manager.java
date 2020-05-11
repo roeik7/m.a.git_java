@@ -80,6 +80,60 @@ public class repository_manager {
 
     }
 
+//    void commit_changes(String []new_commit){
+//        String changes = working_copy_area_status();
+//        Map<String,String> map_of_changes = map_file_to_change(changes);
+//
+//
+//
+//    }
+
+    private Folder map_folder_to_change(Folder root, String path, String last_updater) throws IOException, ParseException, NoSuchAlgorithmException {
+        Library library;
+        Blob file=(Blob)root;
+        Folder folder;
+        ArrayList <Folder> childs = new ArrayList<Folder>();
+        boolean modified, removed_or_renamed;
+
+        if(root.getType().equals("blob")){
+          modified = ((Blob)root).file_content_changed(root, path);
+          removed_or_renamed=Blob.file_exist((Blob)root,path);
+
+          if(modified){
+              file=file.create_commited_blob(root.getName(), path, last_updater);
+          }
+
+          //in case file removed - no need to add his father nothing about him
+          if(removed_or_renamed){
+              file=null;
+          }
+
+          return file;
+        }
+
+        library = (Library)root;
+        for (int i = 0; i <library.getChilds().size() ; i++) {
+            folder = map_folder_to_change(library.getChilds().get(i), path + "\\" + root.getName(), last_updater);
+            if(folder!=null){
+                childs.add(folder);
+            }
+        }
+
+        modified = library.directory_content_is_changed(library, path);
+        removed_or_renamed = library.directory_exist(root, path);
+
+        if(modified){
+            library = library.create_commited_library(childs, root.getName(),last_updater, ((Library) root).isIs_root());
+        }
+
+        //in case file removed - no need to add his father nothing about him
+        if(removed_or_renamed){
+            library = null;
+        }
+
+        return library;
+    }
+
     private String find_working_copy_changes(Folder node, String path) throws IOException {
         //File file;
         boolean is_modified, exist;

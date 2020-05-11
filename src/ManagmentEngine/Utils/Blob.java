@@ -26,6 +26,20 @@ public class Blob extends Folder{
         return res;
     }
 
+    public Blob create_commited_blob(String filename, String path, String last_updater) throws NoSuchAlgorithmException, IOException, ParseException {
+        Blob comitted_blob = new Blob();
+        File new_file = new File(path+"\\"+filename);
+        String file_content = FileUtils.readFileToString(new_file, StandardCharsets.UTF_8);
+        comitted_blob.setTextual_content(file_content);
+        comitted_blob.setLast_update(Folder.get_current_time());
+        comitted_blob.setLast_updater(last_updater);
+        comitted_blob.setName(filename);
+        comitted_blob.setType("blob");
+        comitted_blob.setSha1(super.get_sha1(file_content));
+
+        return comitted_blob;
+    }
+
     public void initialize_blob(MagitBlob curr_blob) {
         try {
             setTextual_content(curr_blob.getContent());
@@ -52,10 +66,14 @@ public class Blob extends Folder{
 
     public boolean file_content_changed(Folder node, String path) throws IOException {
         File file = new File(path+"\\"+node.getName());
-
+        boolean modified =false;
         String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 
-        return !content.equals(node.textual_content);
+        if(content!=null){
+            modified = !content.equals(node.textual_content);
+        }
+
+        return modified;
     }
 
     static public boolean file_exist(Blob blob, String path){

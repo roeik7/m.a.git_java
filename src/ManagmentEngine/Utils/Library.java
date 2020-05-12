@@ -122,8 +122,8 @@ public class Library extends Folder {
         }
     }
 
-    public boolean directory_exist(Folder node, String path) {
-        Path directory = Paths.get(path+"\\"+node.getName());
+    public boolean directory_exist(String path) {
+        Path directory = Paths.get(path);
         return Files.exists(directory);
     }
 
@@ -131,12 +131,13 @@ public class Library extends Folder {
         boolean modified=false;
 
         for (int i = 0; i <node.getChilds().size() && !modified; i++) {
+
             if (node.getChilds().get(i).getType().equals("blob")) {
-                modified = !Blob.file_exist((Blob)node.getChilds().get(i),path+"\\"+node.getName());
+                modified = !Blob.file_exist(path+"\\"+node.getChilds().get(i).getName());
             }
 
             else{
-                modified = !directory_exist(node.getChilds().get(i), path+"\\"+node.getName());
+                modified = !directory_exist(path+"\\"+node.getChilds().get(i).getName());
             }
         }
 

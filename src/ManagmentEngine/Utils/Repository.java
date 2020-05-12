@@ -6,22 +6,32 @@ package ManagmentEngine.Utils;
 import MagitRepository.MagitSingleCommit;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Repository {
     String repo_path, repo_name;
     Library magit_library;  //first child point to objects (all managment files), second child point to branches
     ArrayList<Commit> commits;
+    Map<String, Folder> exist;
 
     public Library get_nagit_library() {
         return magit_library;
+    }
+
+
+    public boolean folder_exist(String sha1){
+        if (exist!=null){
+            return exist.containsKey(sha1);
+        }
+
+        return false;
     }
 
     public void add_commit(Commit commit, Library new_root) throws NoSuchAlgorithmException {
         Library objects, branches;
 
         if(magit_library==null){
+            exist = new Hashtable<String, Folder>();
             magit_library = new Library(true);
             objects = new Library(false);
             branches = new Library(false);
@@ -31,9 +41,23 @@ public class Repository {
             //magit_library.update_lib_sha1();
         }
 
+        add_commited_files(new_root);
         commits.add(commit);
         objects = (Library) magit_library.getChilds().get(0);
         objects.add_child(new_root);
+    }
+
+    private void add_commited_files(Folder new_root) {
+        //add folder to hashtable
+        exist.put(new_root.getSha1(), new_root);
+
+        if(new_root.getType().equals("blob")){
+            return;
+        }
+
+        for (int i = 0; i <((Library)new_root).getChilds().size() ; i++) {
+            add_commited_files(((Library)new_root).getChilds().get(i));
+        }
     }
 
     public void setRepo_path(String repo_path) {

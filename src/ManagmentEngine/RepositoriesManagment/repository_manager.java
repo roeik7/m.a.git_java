@@ -62,15 +62,17 @@ public class repository_manager {
 
     public String working_copy_area_status(){
         String library_changes = "";
+        String [] changes= {"","",""};
+
         try {
             String commit_id = find_current_commit_id();
             Commit current_commit = find_commit_by_id(commit_id);
             Library root = find_root_library_by_sha1(current_commit.getMain_library_sha1());
 
-            for (int i = 0; i <root.getChilds().size() ; i++) {
-                library_changes += find_working_copy_changes(root.getChilds().get(i), repository_path);
-
-            }
+            find_working_copy_changes(root, repository_path, changes);
+//            for (int i = 0; i <root.getChilds().size() ; i++) {
+//                find_working_copy_changes(root.getChilds().get(i), repository_path, changes);
+//            }
         } catch (IOException e) {
             System.out.println("Error to find changes in working copy area.\n");
             e.printStackTrace();
@@ -88,99 +90,132 @@ public class repository_manager {
 //
 //    }
 
-    private Folder map_folder_to_change(Folder root, String path, String last_updater) throws IOException, ParseException, NoSuchAlgorithmException {
-        Library library;
-        Blob file=(Blob)root;
-        Folder folder;
-        ArrayList <Folder> childs = new ArrayList<Folder>();
-        boolean modified, removed_or_renamed;
+//    private Folder map_folder_to_change(Folder root, String path, String last_updater) throws IOException, ParseException, NoSuchAlgorithmException {
+//        Library library;
+//        Blob file=(Blob)root;
+//        Folder folder;
+//        ArrayList <Folder> childs = new ArrayList<Folder>();
+//        boolean modified, removed_or_renamed;
+//
+//        if(root.getType().equals("blob")){
+//          modified = ((Blob)root).file_content_changed(root, path);
+//          removed_or_renamed=Blob.file_exist((Blob)root,path);
+//
+//          if(modified){
+//              file=file.create_commited_blob(root.getName(), path, last_updater);
+//          }
+//
+//          //in case file removed - no need to add his father nothing about him
+//          if(removed_or_renamed){
+//              file=null;
+//          }
+//
+//          return file;
+//        }
+//
+//        library = (Library)root;
+//        for (int i = 0; i <library.getChilds().size() ; i++) {
+//            folder = map_folder_to_change(library.getChilds().get(i), path + "\\" + root.getName(), last_updater);
+//            if(folder!=null){
+//                childs.add(folder);
+//            }
+//        }
+//
+//        modified = library.directory_content_is_changed(library, path);
+//        removed_or_renamed = library.directory_exist(root, path);
+//
+//        if(modified){
+//            library = library.create_commited_library(childs, root.getName(),last_updater, ((Library) root).isIs_root());
+//        }
+//
+//        //in case file removed - no need to add his father nothing about him
+//        if(removed_or_renamed){
+//            library = null;
+//        }
+//
+//        return library;
+//    }
 
-        if(root.getType().equals("blob")){
-          modified = ((Blob)root).file_content_changed(root, path);
-          removed_or_renamed=Blob.file_exist((Blob)root,path);
 
-          if(modified){
-              file=file.create_commited_blob(root.getName(), path, last_updater);
-          }
-
-          //in case file removed - no need to add his father nothing about him
-          if(removed_or_renamed){
-              file=null;
-          }
-
-          return file;
-        }
-
-        library = (Library)root;
-        for (int i = 0; i <library.getChilds().size() ; i++) {
-            folder = map_folder_to_change(library.getChilds().get(i), path + "\\" + root.getName(), last_updater);
-            if(folder!=null){
-                childs.add(folder);
-            }
-        }
-
-        modified = library.directory_content_is_changed(library, path);
-        removed_or_renamed = library.directory_exist(root, path);
-
-        if(modified){
-            library = library.create_commited_library(childs, root.getName(),last_updater, ((Library) root).isIs_root());
-        }
-
-        //in case file removed - no need to add his father nothing about him
-        if(removed_or_renamed){
-            library = null;
-        }
-
-        return library;
-    }
-
-    private String find_working_copy_changes(Folder node, String path) throws IOException {
-        //File file;
+    //changes[0] - modified
+    //changes[1] - removed/renamed
+    //changes[2] - added
+    private void find_working_copy_changes(Folder node, String path, String changes[]) throws IOException {
+        String new_path;
         boolean is_modified, exist;
-        String res="";
         Blob blob;
         Library library;
 
         if(node.getType().equals("blob")){
             blob = (Blob)node;
-            exist = blob.file_exist(blob, path);
+            exist=Blob.file_exist(path);
 
             if(exist){
                 is_modified=blob.file_content_changed(node, path);
-
                 if(is_modified){
-                    res = "File: "+path+"\\"+blob.getName()+" is modified.\n";
+                    changes[0] = changes[0].concat("File: "+path+ " is modified.\n");
+                    //res = "File: "+path+"\\"+blob.getName()+" is modified.\n";
                 }
             }
 
             else{
-                res = "File: "+path+"\\"+blob.getName()+" is removed/renamed.\n";
+                changes[1] = changes[1].concat("File: "+path + " is removed/renamed.\n");
             }
 
-            return res;
+            return;
         }
 
+
+        //library case
         library = (Library) node;
-
-        for (int i = 0; i <library.getChilds().size() ; i++) {
-            res+=find_working_copy_changes(library.getChilds().get(i), path+"\\"+library.getName());
-        }
-
-        exist = library.directory_exist(node, path);
+        exist =library.directory_exist(path);
 
         if (exist) {
             is_modified = library.directory_content_is_changed(library, path);
             if (is_modified){
-                res+="Directory: "+library.getName()+" is modified.\n";
+
+                changes[0]=changes[0].concat("Directory: "+path+" is modified.\n");
             }
         }
 
         else{
-            res+="Directory: "+library.getName()+" is removed/renamed.\n";
+            changes[1] = changes[1].concat("Directory: "+path+" is removed/renamed.\n");
         }
 
+        update_new_folders(path, library, changes);
 
-        return res;
+        for (int i = 0; i <library.getChilds().size() ; i++) {
+            new_path = path + "\\" + library.getChilds().get(i).getName();
+            find_working_copy_changes(library.getChilds().get(i), new_path, changes);
+        }
+    }
+
+    private void update_new_folders(String path,Library node, String[] changes) {
+
+        File file = new File(path);
+        String folder_sha1, folder_name, type;
+        boolean found = false;
+        Folder child;
+        if(file!=null){
+            for (final File fileEntry : file.listFiles()) {
+                folder_name = fileEntry.getName();
+
+                for (int i = 0; i <node.getChilds().size() && !folder_name.equals(".magit") && !found ; i++) {
+                    child=node.getChilds().get(i);
+
+                    if(child.getName().equals(folder_name)){
+                        found =true;
+                    }
+                }
+
+                if (!found && !folder_name.equals(".magit")) {
+                    type = fileEntry.isDirectory()?"New Directory: " : "New File: ";
+                    changes[2] = changes[2].concat(type+path+fileEntry.getName());
+                }
+
+                found=false;
+            }
+        }
     }
 
     private String get_library_details(Folder file, String path) {

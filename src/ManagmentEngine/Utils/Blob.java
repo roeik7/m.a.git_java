@@ -65,7 +65,7 @@ public class Blob extends Folder{
     }
 
     public boolean file_content_changed(Folder node, String path) throws IOException {
-        File file = new File(path+"\\"+node.getName());
+        File file = new File(path);
         boolean modified =false;
         String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 
@@ -76,8 +76,8 @@ public class Blob extends Folder{
         return modified;
     }
 
-    static public boolean file_exist(Blob blob, String path){
-        File f = new File(path+"\\"+blob.getName());
+    static public boolean file_exist(String path){
+        File f = new File(path);
 
         return f.exists();
     }

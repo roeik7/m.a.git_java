@@ -12,10 +12,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 public class Library extends Folder {
     boolean is_root;
     ArrayList<Folder> childs;
+
+    public static String calc_sha1_by_childs(ArrayList<Folder> childs) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        Library temp = new Library(false);
+        temp.setChilds(childs);
+        String content = temp.create_library_textual_content();
+
+        return get_sha1(content);
+    }
 
     public ArrayList<Folder> getChilds() {
         return childs;
@@ -25,7 +34,7 @@ public class Library extends Folder {
         this.is_root = is_root;
     }
 
-    public void update_library_after_childs_creation(MagitSingleFolder magit_curr_library) throws ParseException {
+    public void update_library_after_childs_creation(MagitSingleFolder magit_curr_library) throws ParseException, NoSuchAlgorithmException {
         try {
             String library_content = create_library_textual_content();
             SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy-HH:mm:ss:SSS");
@@ -54,11 +63,12 @@ public class Library extends Folder {
             line.add(getChilds().get(i).getLast_updater());
 
             //convert date to string
-            str_date = super.date_to_string(getLast_update());
+            str_date = super.date_to_string(getChilds().get(i).getLast_update());
             line.add(str_date);
 
             //add delimiter and new line
             res.add(String.join(delimiter, line).concat("\n"));
+            line.clear();
         }
 
         return res;
@@ -161,6 +171,28 @@ public class Library extends Folder {
         new_lib.setSha1(get_sha1(library_content));
 
         return new_lib;
+    }
+
+    public static Library initialize_library_from_exist(File file, ArrayList<Folder> childs, boolean is_root, String[] commit_details) throws NoSuchAlgorithmException, UnsupportedEncodingException, ParseException {
+        Library res = new Library(is_root);
+        res.setChilds(childs);
+        String content = res.create_library_textual_content();
+        String sha1 = get_sha1(content);
+        res.initialize_library(childs, content, sha1, get_current_time(), file.getName(), commit_details[0], is_root);
+
+        return res;
+    }
+
+    private void initialize_library(ArrayList<Folder> childs, String content, String sha1, Date current_time, String name, String updater, boolean is_root) throws NoSuchAlgorithmException {
+        //Library res = new Library(is_root);
+
+        setChilds(childs);
+        setTextual_content(content);
+        setSha1(sha1);
+        setType("library");
+        setLast_update(current_time);
+        setName(name);
+        setLast_updater(updater);
     }
 
 }

@@ -10,7 +10,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Blob extends Folder{
 
@@ -19,37 +19,37 @@ public class Blob extends Folder{
         initialize_sha1();
     }
 
-    public static Blob create_blob(String id, MagitBlob magit_blob) throws NoSuchAlgorithmException {
+    public static Blob create_blob(MagitBlob magit_blob) throws NoSuchAlgorithmException {
         Blob res = new Blob();
-        res.initialize_blob(magit_blob);
+        res = initialize_blob(magit_blob);
 
         return res;
     }
 
-    public Blob create_commited_blob(String filename, String path, String last_updater) throws NoSuchAlgorithmException, IOException, ParseException {
-        Blob comitted_blob = new Blob();
-        File new_file = new File(path+"\\"+filename);
-        String file_content = FileUtils.readFileToString(new_file, StandardCharsets.UTF_8);
-        comitted_blob.setTextual_content(file_content);
-        comitted_blob.setLast_update(Folder.get_current_time());
-        comitted_blob.setLast_updater(last_updater);
-        comitted_blob.setName(filename);
-        comitted_blob.setType("blob");
-        comitted_blob.setSha1(super.get_sha1(file_content));
-
-        return comitted_blob;
+    public static String find_sha1_to_existing_file(File file) throws IOException, NoSuchAlgorithmException {
+        //File file = new File(path);
+        return (get_sha1(FileUtils.readFileToString(file, StandardCharsets.UTF_8)));
     }
 
-    public void initialize_blob(MagitBlob curr_blob) {
+    public Blob create_commited_blob(String filename, String path, String last_updater) throws NoSuchAlgorithmException, IOException, ParseException {
+        Blob commmited_blob = new Blob();
+        File new_file = new File(path+"\\"+filename);
+        String file_content = FileUtils.readFileToString(new_file, StandardCharsets.UTF_8);
+        commmited_blob.setTextual_content(file_content);
+        commmited_blob.setLast_update(Folder.get_current_time());
+        commmited_blob.setLast_updater(last_updater);
+        commmited_blob.setName(filename);
+        commmited_blob.setType("blob");
+        commmited_blob.setSha1(super.get_sha1(file_content));
+
+        return commmited_blob ;
+    }
+
+    static public Blob initialize_blob(MagitBlob curr_blob) throws NoSuchAlgorithmException {
+        Blob new_blob=new Blob();
         try {
-            setTextual_content(curr_blob.getContent());
-            SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy-HH:mm:ss:SSS");
-            setLast_update(formatter.parse(curr_blob.getLastUpdateDate()));
-            setLast_updater(curr_blob.getLastUpdater());
-            setName(curr_blob.getName());
-            String sha1 = super.get_sha1(curr_blob.getContent());
-            setSha1(sha1);
-            setType("blob");
+            new_blob.initialize_blob(curr_blob.getContent(),get_sha1(curr_blob.getContent()) ,curr_blob.getName(),"blob", string_to_date(curr_blob.getLastUpdateDate()), curr_blob.getLastUpdater());
+            return new_blob;
         }
 
         catch (ParseException e) {
@@ -57,6 +57,28 @@ public class Blob extends Folder{
         } catch (UnsupportedEncodingException e) {
             System.out.println("Error to encoding sha1\n");
         }
+
+        return new_blob;
+    }
+
+    public static Blob initialize_blob_from_eist(File file, String commit_details[]) throws NoSuchAlgorithmException, IOException, ParseException {
+        Blob new_blob = new Blob();
+        String content =  FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+
+        new_blob.initialize_blob(content,get_sha1(content), file.getName(), "blob", get_current_time(), commit_details[0]);
+
+        return new_blob;
+    }
+
+    private void initialize_blob(String content, String sha1, String name, String type, Date current_time, String updater) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        //Blob  = new Blob();
+
+        setTextual_content(content);
+        setSha1(sha1);
+        setName(name);
+        setType(type);
+        setLast_update(current_time);
+        setLast_updater(updater);
     }
 
     public boolean file_content_changed(File file){

@@ -3,23 +3,31 @@ package UI;
 import ManagmentEngine.RepositoriesManagment.repository_manager;
 import ManagmentEngine.XML_Managment.xml_details;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws ParseException, NoSuchAlgorithmException, IOException {
         repository_manager x = new repository_manager();
         xml_details xml = new xml_details();
         xml.xml_is_valid("C:\\Users\\roik\\Desktop\\ex1-medium.xml");
         x.initalize_repository(xml, false);
+        String[] commit_details=new String[2];
+
         int r=4;
-        System.out.println("show working copy area:\n");
-        //Scanner stdin = new Scanner(System.in);
-        //stdin.nextLine();
+        //System.out.println("show working copy area:\n");
         System.out.println(x.working_copy_area_status());
         //x.create_magit_file("C:\\Users\\roik\\Desktop");
         int c=4;
         System.out.println(x.working_copy_area_status());
+        //System.out.println("Enter message");
+        Scanner stdin = new Scanner(System.in);
+        commit_details[1]=stdin.nextLine();
+        commit_details[0]="roeik";
+        x.commit_changes(commit_details);
         int bla=23;
         //execute_operations();
     }

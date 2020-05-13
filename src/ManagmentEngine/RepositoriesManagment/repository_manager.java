@@ -18,33 +18,16 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
 public class repository_manager {
     ArrayList<Repository> repositories;
-    String repository_path;
     Repository curr_repository;
     MagitRepository jaxb_repository;
-    String repository_name;
-
-    MessageDigest digest;
-    //Set<String>files;
-    Library root;
 
     boolean manage_existing_repo;
-
-    public String all_commit_libraries(){
-        String commit_id = find_current_commit_id();
-        Commit current_commit = find_commit_by_id(commit_id);
-        Library root = find_root_library_by_sha1(current_commit.getMain_library_sha1());
-        String library_desc= get_library_details(root,repository_path+"\\.magit\\objects");
-
-        return library_desc;
-
-    }
 
     private Library find_root_library_by_sha1(String main_library_sha1) {
 
@@ -60,7 +43,7 @@ public class repository_manager {
         return null;
     }
 
-    public String working_copy_area_status(){
+    public String [] working_copy_area_status(){
         String library_changes = "";
         String [] changes= {"","",""};
 
@@ -69,73 +52,52 @@ public class repository_manager {
             Commit current_commit = find_commit_by_id(commit_id);
             Library root = find_root_library_by_sha1(current_commit.getMain_library_sha1());
 
-            find_working_copy_changes(root, repository_path, changes);
-//            for (int i = 0; i <root.getChilds().size() ; i++) {
-//                find_working_copy_changes(root.getChilds().get(i), repository_path, changes);
-//            }
+            find_working_copy_changes(root, curr_repository.getRepo_path(), changes);
         } catch (IOException e) {
             System.out.println("Error to find changes in working copy area.\n");
             e.printStackTrace();
         }
 
-        return library_changes;
 
+        if(!added_changes(changes)){
+            changes=null;
+        }
+        //return "Modified: "+changes[0]+"Removed/Renamed: "+changes[1] + "Added: " + changes[2];
+        return changes;
     }
 
-//    void commit_changes(String []new_commit){
-//        String changes = working_copy_area_status();
-//        Map<String,String> map_of_changes = map_file_to_change(changes);
-//
-//
-//
-//    }
+    private boolean added_changes(String[] changes) {
+        boolean is_changed=false;
 
-//    private Folder map_folder_to_change(Folder root, String path, String last_updater) throws IOException, ParseException, NoSuchAlgorithmException {
-//        Library library;
-//        Blob file=(Blob)root;
-//        Folder folder;
-//        ArrayList <Folder> childs = new ArrayList<Folder>();
-//        boolean modified, removed_or_renamed;
-//
-//        if(root.getType().equals("blob")){
-//          modified = ((Blob)root).file_content_changed(root, path);
-//          removed_or_renamed=Blob.file_exist((Blob)root,path);
-//
-//          if(modified){
-//              file=file.create_commited_blob(root.getName(), path, last_updater);
-//          }
-//
-//          //in case file removed - no need to add his father nothing about him
-//          if(removed_or_renamed){
-//              file=null;
-//          }
-//
-//          return file;
-//        }
-//
-//        library = (Library)root;
-//        for (int i = 0; i <library.getChilds().size() ; i++) {
-//            folder = map_folder_to_change(library.getChilds().get(i), path + "\\" + root.getName(), last_updater);
-//            if(folder!=null){
-//                childs.add(folder);
-//            }
-//        }
-//
-//        modified = library.directory_content_is_changed(library, path);
-//        removed_or_renamed = library.directory_exist(root, path);
-//
-//        if(modified){
-//            library = library.create_commited_library(childs, root.getName(),last_updater, ((Library) root).isIs_root());
-//        }
-//
-//        //in case file removed - no need to add his father nothing about him
-//        if(removed_or_renamed){
-//            library = null;
-//        }
-//
-//        return library;
-//    }
+        for (int i = 0; i <3 && !is_changed; i++) {
+            if(!changes[i].equals("")){
+                is_changed=true;
+            }
+        }
 
+        return is_changed;
+    }
+
+    //commit_details[0] - user_name
+    //commit_details[1] - commit message
+    public boolean commit_changes(String []commit_details) throws NoSuchAlgorithmException, IOException, ParseException {
+        String changes[] = working_copy_area_status();
+        boolean commited = false;
+        Library new_root;
+        Commit new_commit;
+        File file = new File(curr_repository.getRepo_path());
+        if(changes!=null) {
+            new_root = (Library) curr_repository.create_tree_from_exist(commit_details, file, true);
+            new_commit = Commit.create_new_commit(curr_repository, new_root, commit_details);
+            commited=true;
+            curr_repository.add_commit(new_commit, new_root);
+            curr_repository.switch_commit(new_commit);
+        }
+
+
+
+        return commited;
+    }
 
     //changes[0] - modified
     //changes[1] - removed/renamed
@@ -218,25 +180,6 @@ public class repository_manager {
         }
     }
 
-    private String get_library_details(Folder file, String path) {
-        Library lib;
-        String res;
-
-        if(file.getType().equals("blob")){
-            return file.toString(path +"\\"+file.getName());
-        }
-
-        res=file.toString(path);
-
-        lib = (Library)file;
-
-        for (int i = 0; i <lib.getChilds().size() ; i++) {
-            res+=get_library_details(lib.getChilds().get(i), path+"\\"+file.getName());
-        }
-
-        return res;
-    }
-
     private Commit find_commit_by_id(String commit_id) {
         Commit res=null;
         boolean found=false;
@@ -272,9 +215,10 @@ public class repository_manager {
                 repositories = new ArrayList<Repository>();
             }
             jaxb_repository = xml.getRepo_details();
-            repository_name = jaxb_repository.getName();
-            repository_path=jaxb_repository.getLocation();
+
             create_system_structure(); //if its new repository - create system managment (.magit file and all related files)  (centralized information)
+            curr_repository.setRepo_name(jaxb_repository.getName());
+            curr_repository.setRepo_path(jaxb_repository.getLocation());
 
             if(!manage_existing){
                 create_local_structure();
@@ -301,13 +245,14 @@ public class repository_manager {
             root = find_folder_by_id(id);
             main_lib_curr_commit= create_libraries_structure(root);
             new_commit = new Commit();
-            new_commit.initialize_commit(jaxb_repository.getMagitCommits().getMagitSingleCommit().get(i), main_lib_curr_commit);
+            new_commit.initialize_commit_by_magit_single_commit(jaxb_repository.getMagitCommits().getMagitSingleCommit().get(i), main_lib_curr_commit);
             new_repo.add_commit(new_commit, main_lib_curr_commit);
         }
 
         new_repo.update_precedings_commits(jaxb_repository.getMagitCommits().getMagitSingleCommit(), new_repo.get_commits());
         repositories.add(new_repo);
         curr_repository = new_repo;
+        curr_repository.switch_commit(find_commit_by_id(find_current_commit_id()));
 
         int x=5;
     }
@@ -348,7 +293,8 @@ public class repository_manager {
         for (int i = 0; i < magit_curr_library.getItems().getItem().size(); i++) {
             if(magit_curr_library.getItems().getItem().get(i).getType().equals("blob")){
                 id=magit_curr_library.getItems().getItem().get(i).getId();
-                blob=Blob.create_blob(magit_curr_library.getItems().getItem().get(i).getId(), get_blob_by_id(id));
+                MagitBlob mag_blob=find_blob_by_id(magit_curr_library.getItems().getItem().get(i).getId());
+                blob=Blob.create_blob(mag_blob);
                 curr_node.add_child(blob);
             }
             else {
@@ -361,6 +307,19 @@ public class repository_manager {
         curr_node.update_library_after_childs_creation(magit_curr_library);
 
         return curr_node;
+    }
+
+    private MagitBlob find_blob_by_id(String id) {
+        String curr_id;
+
+        for (int i = 0; i <jaxb_repository.getMagitBlobs().getMagitBlob().size()  ; i++) {
+            curr_id = jaxb_repository.getMagitBlobs().getMagitBlob().get(i).getId();
+            if(curr_id.equals(id)){
+                return jaxb_repository.getMagitBlobs().getMagitBlob().get(i);
+            }
+        }
+
+        return null;
     }
 
     private MagitSingleFolder get_library_by_id(String library_id) {
@@ -394,12 +353,12 @@ public class repository_manager {
     private void create_local_structure() {
         try {
             create_magit_directory();
-            create_objects_and_branches(repository_path);
+            create_objects_and_branches(curr_repository.getRepo_path());
             Library objects = (Library) curr_repository.get_nagit_library().getChilds().get(0);
 
             for (int i = 0; i <objects.getChilds().size() ; i++) {
-                create_magit_rec(objects.getChilds().get(i), repository_path+"\\.magit\\objects");
-                create_magit_rec(curr_repository.get_commits().get(i),repository_path+"\\.magit\\objects");
+                create_magit_rec(objects.getChilds().get(i), curr_repository.getRepo_path()+"\\.magit\\objects");
+                create_magit_rec(curr_repository.get_commits().get(i),curr_repository.getRepo_path()+"\\.magit\\objects");
             }
 
             create_system_by_magit();
@@ -415,8 +374,7 @@ public class repository_manager {
         Commit current_commit = find_commit_by_id(commit_id);
         Library root = find_root_library_by_sha1(current_commit.getMain_library_sha1());
 
-        create_project(root, repository_path);
-        int x;
+        create_project(root, curr_repository.getRepo_path());
     }
 
     private void create_project(Folder root, String path) {
@@ -466,7 +424,7 @@ public class repository_manager {
     }
 
     public void create_magit_directory() throws failed_to_create_file_exception {
-        File file = new File(repository_path.concat("\\.magit"));
+        File file = new File(curr_repository.getRepo_path().concat("\\.magit"));
         boolean success = file.mkdir();
 
         if(!success){

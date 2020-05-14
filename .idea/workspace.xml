@@ -2,18 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25532d93-9b9e-4c8c-9d2e-e26d3eb96ccc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/branch_not_found_exception.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/failed_to_create_local_structure_exception.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/failed_to_delete_repository_exception.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/file_not_exist_exception.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/head_branch_deletion_exception.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/no_active_repository_exception.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/repository_not_found_exception.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Branch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Commit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Repository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -84,13 +72,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="9" />
-          <entry key="java" value="35776" />
+          <entry key="java" value="36180" />
           <entry key="xsd" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="35776" />
+          <entry key="JAVA" value="36180" />
           <entry key="PLAIN_TEXT" value="9" />
           <entry key="XML" value="1" />
         </counts>
@@ -102,11 +90,9 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UI/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
+            <state relative-caret-position="119">
+              <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
               <folding>
-                <element signature="method#main#0;class#Main#0" />
-                <element signature="e#1180#1220#0" />
                 <element signature="method#execute_operations#0;class#Main#0" />
                 <element signature="method#handle_user_choice#0;class#Main#0" />
                 <element signature="method#handle_branch_history#0;class#Main#0" />
@@ -466,7 +452,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589468637277" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589470586695" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -525,12 +511,12 @@
       <updated>1588766626359</updated>
       <workItem from="1588766630688" duration="967000" />
       <workItem from="1588837249862" duration="161272000" />
-      <workItem from="1589429735061" duration="9765000" />
+      <workItem from="1589429735061" duration="11093000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="172004000" />
+    <option name="totallyTimeSpent" value="173332000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -573,31 +559,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/UI/Main.java</url>
-          <line>26</line>
-          <properties />
-          <option name="timeStamp" value="955" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/UI/Main.java</url>
-          <line>27</line>
-          <properties />
-          <option name="timeStamp" value="956" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/UI/Main.java</url>
-          <line>29</line>
-          <properties />
-          <option name="timeStamp" value="957" />
-        </line-breakpoint>
-      </breakpoints>
-      <breakpoints-dialog>
-        <breakpoints-dialog />
-      </breakpoints-dialog>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="xml.magit_repo.MagitBranches" />
@@ -1040,11 +1001,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UI/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
+        <state relative-caret-position="119">
+          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
           <folding>
-            <element signature="method#main#0;class#Main#0" />
-            <element signature="e#1180#1220#0" />
             <element signature="method#execute_operations#0;class#Main#0" />
             <element signature="method#handle_user_choice#0;class#Main#0" />
             <element signature="method#handle_branch_history#0;class#Main#0" />

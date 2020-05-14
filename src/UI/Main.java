@@ -13,21 +13,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws ParseException, NoSuchAlgorithmException, IOException, failed_to_create_local_structure_exception {
-        repository_manager x = new repository_manager();
-        xml_details xml = new xml_details();
-        xml.xml_is_valid("C:\\Users\\roik\\Desktop\\ex1-medium.xml");
-        x.initalize_repository(xml, false);
-        String[] commit_details=new String[2];
-
-        System.out.println("Enter banch name");
-        Scanner stdin = new Scanner(System.in);
-
-        String branch_name = stdin.nextLine();
-//        x.add_new_branch(branch_name);
-//        System.out.println("brance added");
-//        System.out.println("all branches: "+x.get_branches());
-//
-//        int bla=23;
+        execute_operations();
     }
 
     private static void execute_operations() {
@@ -79,7 +65,7 @@ public class Main {
                 exit=true;
                 break;
             default:
-                System.out.println("Invalid choice");
+                System.out.println("Invalid choice\nEnter number between 1-11");
                 break;
 
 
@@ -97,13 +83,18 @@ public class Main {
     private static void handle_checkout(repository_manager managment_engine) {
         System.out.println("Please insert name for the nre branch: ");
         Scanner stdin = new Scanner(System.in);
-        String branch_name = stdin.nextLine();
-        try {
-            managment_engine.checkout(branch_name);
-        } catch (ManagmentEngine.RepositoriesManagment.RepositoryExceptions.head_branch_deletion_exception e) {
-            System.out.println(e.getMessage());
-        } catch (ManagmentEngine.RepositoriesManagment.RepositoryExceptions.branch_not_found_exception e1) {
-            System.out.println(e1.getMessage());
+        String branch_name = stdin.hasNext()? stdin.nextLine() : "";
+        if(branch_name.contains(" ")){
+            System.out.println("Branch name must be witout spaces");
+        }
+        else{
+            try {
+                managment_engine.checkout(branch_name);
+            } catch (ManagmentEngine.RepositoriesManagment.RepositoryExceptions.head_branch_deletion_exception e) {
+                System.out.println(e.getMessage());
+            } catch (ManagmentEngine.RepositoriesManagment.RepositoryExceptions.branch_not_found_exception e1) {
+                System.out.println(e1.getMessage());
+            }
         }
     }
 
@@ -111,8 +102,13 @@ public class Main {
         try {
             System.out.println("Please insert name for the nre branch: ");
             Scanner stdin = new Scanner(System.in);
-            String branch_name = stdin.nextLine();
-            managment_engine.delete_branch(branch_name);
+            String branch_name = stdin.hasNext()? stdin.nextLine() : "";
+            if(branch_name.contains(" ")||branch_name.contains("")){
+                System.out.println("Branch name must be witout spaces");
+            }
+            else{
+                managment_engine.delete_branch(branch_name);
+            }
         }
         catch (ManagmentEngine.RepositoriesManagment.RepositoryExceptions.no_active_repository_exception e) {
             System.out.println(e.getMessage());
@@ -124,10 +120,16 @@ public class Main {
     private static void create_new_branch(repository_manager managment_engine) {
 
         try {
+
             System.out.println("Please insert name for the nre branch: ");
             Scanner stdin = new Scanner(System.in);
-            String branch_name = stdin.nextLine();
-            managment_engine.add_new_branch(branch_name);
+            String branch_name = stdin.hasNext()? stdin.nextLine() : " ";
+            if(branch_name.contains(" ")||branch_name.contains("")){
+                System.out.println("Branch name must be witout spaces");
+            }
+            else{
+                managment_engine.add_new_branch(branch_name);
+            }
         }
         catch (ManagmentEngine.RepositoriesManagment.RepositoryExceptions.no_active_repository_exception e) {
             System.out.println(e.getMessage());
@@ -176,28 +178,35 @@ public class Main {
                            "2. Initliaze new repoistory with xml."
                 );
         Scanner stdin = new Scanner(System.in);
-        int user_choice= stdin.nextInt();
-        if(user_choice==1){
-            System.out.println("Enter repository name:\n");
-            String repo_name = stdin.nextLine();
-            if(managment_engine.repository_exist(repo_name)){
-                try {
-                    managment_engine.initialize_old_repository(repo_name);
-                } catch (ManagmentEngine.RepositoriesManagment.RepositoryExceptions.repository_not_found_exception repository_not_found_exception) {
-                    System.out.println(repository_not_found_exception.getMessage());
+        int user_choice= stdin.hasNextInt()? stdin.nextInt() : 0;
+        if(user_choice!=0){
+            if(user_choice==1){
+                System.out.println("Enter repository name:\n");
+                String repo_name = stdin.nextLine();
+                if(managment_engine.repository_exist(repo_name)){
+                    try {
+                        managment_engine.initialize_old_repository(repo_name);
+                    } catch (ManagmentEngine.RepositoriesManagment.RepositoryExceptions.repository_not_found_exception repository_not_found_exception) {
+                        System.out.println(repository_not_found_exception.getMessage());
+                    }
                 }
             }
-        }
-        else{
-            handle_load_xml(managment_engine);
+            else{
+                handle_load_xml(managment_engine);
+            }
         }
     }
 
     private static void handle_update_user_name(String usermame) {
         Scanner stdin = new Scanner(System.in);
         System.out.println("Please enter your new username: \n");
-        usermame=stdin.nextLine();
-        System.out.println("Hey "+usermame +"\nYour username updated successfully.\n");
+        usermame=stdin.hasNext()? stdin.nextLine() : "";
+        if(usermame.contains("")||usermame.contains(" ")){
+            System.out.println("Username must be string without spaces");
+        }
+        else{
+            System.out.println("Hey "+usermame +"\nYour username updated successfully.\n");
+        }
     }
 
     private static void handle_load_xml(repository_manager managment_engine) {
@@ -246,7 +255,8 @@ public class Main {
     private static int show_manu() {
 
         Scanner stdin = new Scanner(System.in);
-        int choice;
+        int choice=0;
+
         System.out.println("Please enter your choice:\n" +
                 "1.  Update username.\n" +
                 "2.  Load repository.\n" +
@@ -259,8 +269,9 @@ public class Main {
                 "9.  Checkout.\n" +
                 "10. Show history of active branch.\n" +
                 "11. Exit.\n");
-
-        choice = stdin.nextInt();
+        if (stdin.hasNextInt()){
+            choice = stdin.nextInt();
+        }
 
         return choice;
     }

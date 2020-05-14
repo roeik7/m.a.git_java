@@ -99,4 +99,18 @@ public class Branch {
     public void delete_branch(String branch_name) {
         branches.remove(branch_name);
     }
+
+    public String get_head_branch_history() {
+        LinkedList<Commit> commits = branches.get(head_name);
+        String res="";
+        for (int i = 0; i <commits.size() ; i++) {
+            res+="Commit SHA-1: "+commits.get(i).getSha1()+"\n"+
+                    "Commit Message: "+commits.get(i).getCommit_essence()+"\n"+
+                    "Created At: "+commits.get(i).getLast_update()+"\n"+
+                    "Commites By: "+commits.get(i).getLast_updater()+"\n\n";
+
+        }
+
+        return res;
+    }
 }

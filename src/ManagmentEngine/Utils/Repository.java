@@ -21,6 +21,10 @@ public class Repository {
     Branch active_branch;
     Library curr_library;
 
+    public Commit get_current_commit(){
+        return curr_commit;
+    }
+
     public Branch getBranches() {
         return active_branch;
     }
@@ -99,6 +103,11 @@ public class Repository {
 
     public void switch_commit(Commit commit) {
         curr_commit=commit;
+
+    }
+
+    private void synchronize_tree_by_magit(String main_library_sha1) {
+
     }
 
     public DataStorage create_tree_from_exist(String commit_details[], File file, boolean is_root) throws IOException, ParseException, NoSuchAlgorithmException {
@@ -160,6 +169,14 @@ public class Repository {
         active_branch.delete_branch(branch_name);
 
         //Commit co
+    }
+
+    public void switch_branch(String branch_name) throws IOException {
+        if(active_branch.getBranches().containsKey(branch_name)){
+            switch_commit(active_branch.getBranches().get(branch_name).getLast());
+            active_branch.switch_branch(branch_name);
+        }
+
     }
 }
 

@@ -32,6 +32,12 @@ public class repository_manager {
 
     boolean manage_existing_repo;
 
+    public String active_brance_history(){
+        String res = curr_repository.getBranches().get_head_branch_history();
+
+        return res;
+    }
+
     public ArrayList get_branches(){
         Map<String, LinkedList<Commit>> active_branches = curr_repository.get_all_branches();
         ArrayList<String> branches_details=new ArrayList<>();
@@ -58,12 +64,10 @@ public class repository_manager {
         }
     }
 
-
     void checkout(String branch_name){
         try {
-            curr_repository.getBranches().switch_branch(branch_name);
+            curr_repository.switch_branch(branch_name);
         } catch (IOException e) {
-            System.out.println("Error to switch branch: "+branch_name);
             e.printStackTrace();
         }
     }
@@ -87,9 +91,10 @@ public class repository_manager {
         String [] changes= {"","",""};
 
         try {
-            String commit_id = find_current_commit_id();
-            Commit current_commit = find_commit_by_id(commit_id);
-            Library root = find_root_library_by_sha1(current_commit.getMain_library_sha1());
+            //String commit_id = find_current_commit_id();
+            //Commit current_commit = find_commit_by_id(commit_id);
+            Commit curr_commit = curr_repository.get_current_commit();
+            Library root = find_root_library_by_sha1(curr_commit.getMain_library_sha1());
 
             find_working_copy_changes(root, curr_repository.getRepo_path(), changes);
         } catch (IOException e) {

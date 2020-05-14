@@ -23,7 +23,7 @@ public class Commit extends DataStorage {
     }
 
     private String id;
-    private String updater;
+    //private String updater;
 
 
     public static Commit create_new_commit(Repository curr_repo, Library new_root, String[] commit_details) throws NoSuchAlgorithmException, ParseException {
@@ -56,7 +56,7 @@ public class Commit extends DataStorage {
         type="commit";
         main_library_sha1 = main_lib_curr_commit.sha1;
         commit_essence = message;
-        updater = author;
+        last_updater = author;
         setLast_update( get_date(dateOfCreation));
         sha1 = calc_commit_sha1();
         this.id = id==null? sha1 : id;
@@ -85,7 +85,7 @@ public class Commit extends DataStorage {
         //convert date to string
         str_date = date_to_string(getLast_update());
         line.add(str_date);
-        line.add(updater);
+        line.add(last_updater);
 
         //add delimiter and new line
         res = String.join(delimiter, line).concat("\n");
@@ -97,7 +97,7 @@ public class Commit extends DataStorage {
         String res = null;
 
         try {
-            res = get_sha1(main_library_sha1 +"\n" + updater + "\n" + getLast_updater()+"\n" + commit_essence);
+            res = get_sha1(main_library_sha1 +"\n" + last_updater + "\n" + getLast_updater()+"\n" + commit_essence);
         }
         catch (UnsupportedEncodingException e) {
             System.out.println("Error to calc sha1 in commit\n");

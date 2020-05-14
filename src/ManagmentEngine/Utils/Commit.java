@@ -9,10 +9,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Commit extends Folder {
+public class Commit extends DataStorage {
 
     private ArrayList<String> precedings_commits_sha1;
     private String commit_essence;
+
+    public String getCommit_essence() {
+        return commit_essence;
+    }
 
     public String getId() {
         return id;
@@ -133,5 +137,5 @@ public class Commit extends Folder {
     }
 
     @Override
-    public void create_local_file(Folder node, String path) {};
+    public void create_local_file(DataStorage node, String path) {};
 }

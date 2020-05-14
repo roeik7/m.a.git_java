@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.util.Date;
 
-public class Blob extends Folder{
+public class Blob extends DataStorage{
 
 
     public Blob() throws NoSuchAlgorithmException {
@@ -36,7 +36,7 @@ public class Blob extends Folder{
         File new_file = new File(path+"\\"+filename);
         String file_content = FileUtils.readFileToString(new_file, StandardCharsets.UTF_8);
         commmited_blob.setTextual_content(file_content);
-        commmited_blob.setLast_update(Folder.get_current_time());
+        commmited_blob.setLast_update(DataStorage.get_current_time());
         commmited_blob.setLast_updater(last_updater);
         commmited_blob.setName(filename);
         commmited_blob.setType("blob");
@@ -86,7 +86,7 @@ public class Blob extends Folder{
         return true;
     }
 
-    public boolean file_content_changed(Folder node, String path) throws IOException {
+    public boolean file_content_changed(DataStorage node, String path) throws IOException {
         File file = new File(path);
         boolean modified =false;
         String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
@@ -105,11 +105,11 @@ public class Blob extends Folder{
     }
 
     @Override
-    public void create_local_file(Folder node, String path) {
+    public void create_local_file(DataStorage node, String path) {
      create_and_write_to_file(node, path, node.getName());
     }
 
-    public static void create_and_write_to_file(Folder folder, String path, String file_name) {
+    public static void create_and_write_to_file(DataStorage folder, String path, String file_name) {
         try {
             File file = new File(path+"\\"+file_name);
             file.createNewFile();

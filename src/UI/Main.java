@@ -17,19 +17,15 @@ public class Main {
         x.initalize_repository(xml, false);
         String[] commit_details=new String[2];
 
-        int r=4;
-        //System.out.println("show working copy area:\n");
-        System.out.println(x.working_copy_area_status());
-        //x.create_magit_file("C:\\Users\\roik\\Desktop");
-        int c=4;
-        System.out.println(x.working_copy_area_status());
-        //System.out.println("Enter message");
+        System.out.println("Enter banch name");
         Scanner stdin = new Scanner(System.in);
-        commit_details[1]=stdin.nextLine();
-        commit_details[0]="roeik";
-        x.commit_changes(commit_details);
+
+        String branch_name = stdin.nextLine();
+        x.add_new_branch(branch_name);
+        System.out.println("brance added");
+        System.out.println("all branches: "+x.get_branches());
+
         int bla=23;
-        //execute_operations();
     }
 
 

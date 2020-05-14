@@ -21,6 +21,9 @@ import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
 
 public class repository_manager {
     ArrayList<Repository> repositories;
@@ -28,6 +31,42 @@ public class repository_manager {
     MagitRepository jaxb_repository;
 
     boolean manage_existing_repo;
+
+    public ArrayList get_branches(){
+        Map<String, LinkedList<Commit>> active_branches = curr_repository.get_all_branches();
+        ArrayList<String> branches_details=new ArrayList<>();
+        String single_branch = new String();
+        Iterator<Map.Entry<String, LinkedList<Commit>> > it = active_branches.entrySet().iterator();
+
+        while(it.hasNext()){
+            Map.Entry<String, LinkedList<Commit>> entry = it.next();
+            single_branch=("Brance Name: "+entry.getKey()+"\n"+
+                        "Sha-1 of pointed commit: "+entry.getValue().getLast().getSha1()+"\n"+
+                        "Commit Message: "+entry.getValue().getLast().getCommit_essence()+"\n");
+            branches_details.add(single_branch);
+        }
+
+    return branches_details;
+    }
+
+    public void add_new_branch(String new_branch){
+        try {
+            curr_repository.add_new_branch(new_branch);
+        } catch (IOException e) {
+            System.out.println("Error to add new branch.\n");
+            e.printStackTrace();
+        }
+    }
+
+
+    void checkout(String branch_name){
+        try {
+            curr_repository.getBranches().switch_branch(branch_name);
+        } catch (IOException e) {
+            System.out.println("Error to switch branch: "+branch_name);
+            e.printStackTrace();
+        }
+    }
 
     private Library find_root_library_by_sha1(String main_library_sha1) {
 
@@ -90,7 +129,7 @@ public class repository_manager {
             new_root = (Library) curr_repository.create_tree_from_exist(commit_details, file, true);
             new_commit = Commit.create_new_commit(curr_repository, new_root, commit_details);
             commited=true;
-            curr_repository.add_commit(new_commit, new_root);
+            curr_repository.add_commit(new_commit, new_root,jaxb_repository.getMagitBranches().getHead());
             curr_repository.switch_commit(new_commit);
         }
 
@@ -102,7 +141,7 @@ public class repository_manager {
     //changes[0] - modified
     //changes[1] - removed/renamed
     //changes[2] - added
-    private void find_working_copy_changes(Folder node, String path, String changes[]) throws IOException {
+    private void find_working_copy_changes(DataStorage node, String path, String changes[]) throws IOException {
         String new_path;
         boolean is_modified, exist;
         Blob blob;
@@ -157,7 +196,7 @@ public class repository_manager {
         File file = new File(path);
         String folder_sha1, folder_name, type;
         boolean found = false;
-        Folder child;
+        DataStorage child;
         if(file!=null){
             for (final File fileEntry : file.listFiles()) {
                 folder_name = fileEntry.getName();
@@ -219,25 +258,31 @@ public class repository_manager {
             create_system_structure(); //if its new repository - create system managment (.magit file and all related files)  (centralized information)
             curr_repository.setRepo_name(jaxb_repository.getName());
             curr_repository.setRepo_path(jaxb_repository.getLocation());
-
+            //synchoronize_relevant_commit();
             if(!manage_existing){
                 create_local_structure();
             }
         }
 
         catch (ParseException e) {
-            System.out.println("Rrror to parse date "+e.getMessage());
+            System.out.println("Rrror to parse date.\n"+e.getMessage());
         } catch (NoSuchAlgorithmException e) {
-            System.out.println("Error to get sha1 "+e.getMessage());
+            System.out.println("Error to get sha1.\n"+e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error to add new branch.\n");
+            e.printStackTrace();
         }
     }
 
-    private void create_system_structure() throws ParseException, NoSuchAlgorithmException {
+    private void create_system_structure() throws ParseException, NoSuchAlgorithmException, IOException {
         String id;
         MagitSingleFolder root;
         Library main_lib_curr_commit;
         Repository new_repo = new Repository();
         Commit new_commit;
+
+        new_repo.setRepo_path(jaxb_repository.getLocation());
+        new_repo.setRepo_name(jaxb_repository.getName());
 
         //foreach commit create tree structure
         for (int i = 0; i < jaxb_repository.getMagitCommits().getMagitSingleCommit().size(); i++) {
@@ -246,15 +291,25 @@ public class repository_manager {
             main_lib_curr_commit= create_libraries_structure(root);
             new_commit = new Commit();
             new_commit.initialize_commit_by_magit_single_commit(jaxb_repository.getMagitCommits().getMagitSingleCommit().get(i), main_lib_curr_commit);
-            new_repo.add_commit(new_commit, main_lib_curr_commit);
+            new_repo.add_commit(new_commit, main_lib_curr_commit,jaxb_repository.getMagitBranches().getMagitSingleBranch().get(i).getName());
         }
 
         new_repo.update_precedings_commits(jaxb_repository.getMagitCommits().getMagitSingleCommit(), new_repo.get_commits());
         repositories.add(new_repo);
         curr_repository = new_repo;
         curr_repository.switch_commit(find_commit_by_id(find_current_commit_id()));
-
+        add_brances_from_xml(jaxb_repository);
         int x=5;
+    }
+
+    private void add_brances_from_xml(MagitRepository jaxb_repository) throws IOException {
+        String branch_name, commit_id;
+        for (int i = 0; i <jaxb_repository.getMagitBranches().getMagitSingleBranch().size() ; i++) {
+            branch_name=jaxb_repository.getMagitBranches().getMagitSingleBranch().get(i).getName();
+            commit_id = jaxb_repository.getMagitBranches().getMagitSingleBranch().get(i).getPointedCommit().getId();
+            curr_repository.add_branch(branch_name, commit_id);
+        }
+        curr_repository.getBranches().set_head_branch(jaxb_repository.getMagitBranches().getHead());
     }
 
     private MagitSingleFolder find_folder_by_id(String id) {
@@ -362,6 +417,7 @@ public class repository_manager {
             }
 
             create_system_by_magit();
+            curr_repository.branch_init(jaxb_repository.getMagitBranches().getHead());
             //create_commits_files();
 
         } catch (Exception e) {
@@ -377,7 +433,7 @@ public class repository_manager {
         create_project(root, curr_repository.getRepo_path());
     }
 
-    private void create_project(Folder root, String path) {
+    private void create_project(DataStorage root, String path) {
 
         Library lib;
 
@@ -404,7 +460,7 @@ public class repository_manager {
         }
     }
 
-    private void create_magit_rec(Folder folder, String path) {
+    private void create_magit_rec(DataStorage folder, String path) {
         Library file;
 
         if (folder.getType().equals("blob")) {
@@ -453,5 +509,13 @@ public class repository_manager {
         }
 
         return message;
+    }
+
+    public void delete_branch(String branch_name){
+        try {
+            curr_repository.delete_branch(branch_name);
+        } catch (ManagmentEngine.RepositoriesManagment.RepositoryExceptions.illegal_branch_deletion_exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

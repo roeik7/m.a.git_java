@@ -14,11 +14,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
-public class Library extends Folder {
+public class Library extends DataStorage {
     boolean is_root;
-    ArrayList<Folder> childs;
+    ArrayList<DataStorage> childs;
 
-    public static String calc_sha1_by_childs(ArrayList<Folder> childs) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public static String calc_sha1_by_childs(ArrayList<DataStorage> childs) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         Library temp = new Library(false);
         temp.setChilds(childs);
         String content = temp.create_library_textual_content();
@@ -26,7 +26,7 @@ public class Library extends Folder {
         return get_sha1(content);
     }
 
-    public ArrayList<Folder> getChilds() {
+    public ArrayList<DataStorage> getChilds() {
         return childs;
     }
 
@@ -77,17 +77,17 @@ public class Library extends Folder {
     public Library(boolean is_root) throws NoSuchAlgorithmException {
         //blobs_childs = new ArrayList<Blob>();
         //libraries_childs = new ArrayList<Library>();
-        childs = new ArrayList<Folder>();
+        childs = new ArrayList<DataStorage>();
 
         this.is_root=is_root;
         initialize_sha1();
     }
 
-    public void add_child(Folder node){
+    public void add_child(DataStorage node){
         childs.add(node);
     }
 
-    public void setChilds(ArrayList<Folder> childs) {
+    public void setChilds(ArrayList<DataStorage> childs) {
         this.childs = childs;
     }
 
@@ -155,11 +155,11 @@ public class Library extends Folder {
     }
 
     @Override
-    public void create_local_file(Folder node, String path) {
+    public void create_local_file(DataStorage node, String path) {
         new File(path+"\\"+node.getName()).mkdir();
     }
 
-    public Library create_commited_library(ArrayList<Folder> childs, String name, String last_updater, boolean is_root) throws NoSuchAlgorithmException, UnsupportedEncodingException, ParseException {
+    public Library create_commited_library(ArrayList<DataStorage> childs, String name, String last_updater, boolean is_root) throws NoSuchAlgorithmException, UnsupportedEncodingException, ParseException {
         Library new_lib = new Library(is_root);
         new_lib.setChilds(childs);
         new_lib.setName(name);
@@ -173,7 +173,7 @@ public class Library extends Folder {
         return new_lib;
     }
 
-    public static Library initialize_library_from_exist(File file, ArrayList<Folder> childs, boolean is_root, String[] commit_details) throws NoSuchAlgorithmException, UnsupportedEncodingException, ParseException {
+    public static Library initialize_library_from_exist(File file, ArrayList<DataStorage> childs, boolean is_root, String[] commit_details) throws NoSuchAlgorithmException, UnsupportedEncodingException, ParseException {
         Library res = new Library(is_root);
         res.setChilds(childs);
         String content = res.create_library_textual_content();
@@ -183,7 +183,7 @@ public class Library extends Folder {
         return res;
     }
 
-    private void initialize_library(ArrayList<Folder> childs, String content, String sha1, Date current_time, String name, String updater, boolean is_root) throws NoSuchAlgorithmException {
+    private void initialize_library(ArrayList<DataStorage> childs, String content, String sha1, Date current_time, String name, String updater, boolean is_root) throws NoSuchAlgorithmException {
         //Library res = new Library(is_root);
 
         setChilds(childs);

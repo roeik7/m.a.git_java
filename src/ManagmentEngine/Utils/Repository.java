@@ -4,13 +4,19 @@
 package ManagmentEngine.Utils;
 
 import MagitRepository.MagitSingleCommit;
+import ManagmentEngine.RepositoriesManagment.RepositoryExceptions.branch_not_found_exception;
+import ManagmentEngine.RepositoriesManagment.RepositoryExceptions.file_not_exist_exception;
+import ManagmentEngine.RepositoriesManagment.RepositoryExceptions.head_branch_deletion_exception;
 import ManagmentEngine.RepositoriesManagment.RepositoryExceptions.illegal_branch_deletion_exception;
 
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
 
 public class Repository {
     String repo_path, repo_name;
@@ -21,12 +27,17 @@ public class Repository {
     Branch active_branch;
     Library curr_library;
 
+
     public Commit get_current_commit(){
         return curr_commit;
     }
 
     public Branch getBranches() {
         return active_branch;
+    }
+
+    public String getRepo_name() {
+        return repo_name;
     }
 
     public Map get_all_branches(){
@@ -153,7 +164,7 @@ public class Repository {
         return null;
     }
 
-    public void branch_init(String branch_name) throws IOException {
+    public void branch_init(String branch_name) throws IOException, branch_not_found_exception {
         active_branch.switch_branch(branch_name);
     }
 
@@ -171,11 +182,22 @@ public class Repository {
         //Commit co
     }
 
-    public void switch_branch(String branch_name) throws IOException {
+    public DataStorage get_DataStorage_by_sha1(String sha1) throws file_not_exist_exception {
+        if(exist.containsKey(sha1)) {
+            return exist.get(sha1);
+        }
+
+        throw new file_not_exist_exception("The file not exist in this repository.");
+    }
+
+    public void switch_branch(String branch_name) throws IOException, head_branch_deletion_exception, branch_not_found_exception {
         if(active_branch.getBranches().containsKey(branch_name)){
             switch_commit(active_branch.getBranches().get(branch_name).getLast());
             active_branch.switch_branch(branch_name);
+            return;
         }
+
+        throw new head_branch_deletion_exception("Youre trying to delete head branch.\nFailed to delete branch");
 
     }
 }

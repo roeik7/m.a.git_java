@@ -13,6 +13,7 @@ public class Commit extends DataStorage {
 
     private ArrayList<String> precedings_commits_sha1;
     private String commit_essence;
+    private String main_library_sha1;
 
     public String getCommit_essence() {
         return commit_essence;
@@ -38,8 +39,6 @@ public class Commit extends DataStorage {
     public String getMain_library_sha1() {
         return main_library_sha1;
     }
-
-    private String main_library_sha1;
 
     public Commit() throws NoSuchAlgorithmException {
         super.initialize_sha1();

@@ -1,5 +1,7 @@
 package ManagmentEngine.Utils;
 
+import ManagmentEngine.RepositoriesManagment.RepositoryExceptions.branch_not_found_exception;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -70,11 +72,15 @@ public class Branch {
         return branches.containsKey(branch_name);
     }
 
-    public void switch_branch(String branch_name) throws IOException {
+    public void switch_branch(String branch_name) throws IOException, branch_not_found_exception {
         if(branches.containsKey(branch_name)){
             update_head_file(branch_name);
             head=branches.get(branch_name).getLast();
+            return;
         }
+
+        throw new branch_not_found_exception("The branch isnt found.");
+
     }
 
     private void update_head_file(String branch_name) throws IOException {

@@ -2,13 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25532d93-9b9e-4c8c-9d2e-e26d3eb96ccc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/branch_not_found_exception.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/failed_to_create_local_structure_exception.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/failed_to_delete_repository_exception.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/file_not_exist_exception.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/head_branch_deletion_exception.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/no_active_repository_exception.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/repository_not_found_exception.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/RepositoriesManagment/repository_manager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/RepositoriesManagment/repository_manager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/Utils/Repository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/Utils/Repository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Branch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Commit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,34 +61,36 @@
     <session id="981799929">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="1" />
-          <entry key="java" value="70" />
+          <entry key="java" value="81" />
           <entry key="xsd" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="70" />
+          <entry key="JAVA" value="81" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="9" />
-          <entry key="java" value="31459" />
+          <entry key="java" value="35776" />
           <entry key="xsd" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="31459" />
+          <entry key="JAVA" value="35776" />
           <entry key="PLAIN_TEXT" value="9" />
           <entry key="XML" value="1" />
         </counts>
@@ -90,14 +98,28 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UI/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state>
+              <caret lean-forward="true" />
               <folding>
+                <element signature="method#main#0;class#Main#0" />
+                <element signature="e#1180#1220#0" />
+                <element signature="method#execute_operations#0;class#Main#0" />
+                <element signature="method#handle_user_choice#0;class#Main#0" />
+                <element signature="method#handle_branch_history#0;class#Main#0" />
+                <element signature="method#handle_checkout#0;class#Main#0" />
+                <element signature="method#remove_branch#0;class#Main#0" />
+                <element signature="method#create_new_branch#0;class#Main#0" />
+                <element signature="method#show_all_branches#0;class#Main#0" />
+                <element signature="method#show_working_stage_area#0;class#Main#0" />
+                <element signature="method#handle_commit_history#0;class#Main#0" />
+                <element signature="method#handle_switch_repository#0;class#Main#0" />
                 <element signature="method#handle_update_user_name#0;class#Main#0" />
+                <element signature="method#handle_load_xml#0;class#Main#0" />
+                <element signature="method#show_manu#0;class#Main#0" />
               </folding>
             </state>
           </provider>
@@ -106,23 +128,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="35" column="60" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="60" />
+            <state relative-caret-position="238">
+              <caret line="95" column="45" lean-forward="true" selection-start-line="95" selection-start-column="45" selection-end-line="95" selection-end-column="45" />
               <folding>
-                <element signature="e#956#957#0" expanded="true" />
-                <element signature="e#1039#1040#0" expanded="true" />
-                <element signature="method#get_branches#0;class#repository_manager#0" />
-                <element signature="method#add_new_branch#0;class#repository_manager#0" />
-                <element signature="method#checkout#0;class#repository_manager#0" />
-                <element signature="method#find_folder_by_sha1#0;class#repository_manager#0" />
-                <element signature="method#working_copy_area_status#0;class#repository_manager#0" />
-                <element signature="e#2837#2883#0" />
+                <element signature="method#active_brance_history#0;class#repository_manager#0" />
+                <element signature="method#find_root_library_by_sha1#0;class#repository_manager#0" />
+                <element signature="e#2897#2943#0" />
                 <element signature="method#added_changes#0;class#repository_manager#0" />
                 <element signature="method#commit_changes#0;class#repository_manager#0" />
                 <element signature="method#find_working_copy_changes#0;class#repository_manager#0" />
                 <element signature="method#update_new_folders#0;class#repository_manager#0" />
                 <element signature="method#find_commit_by_id#0;class#repository_manager#0" />
-                <element signature="method#find_current_commit#0;class#repository_manager#0" />
+                <element signature="method#find_current_commit_id#0;class#repository_manager#0" />
                 <element signature="method#initalize_repository#0;class#repository_manager#0" />
                 <element signature="method#create_system_structure#0;class#repository_manager#0" />
                 <element signature="method#add_brances_from_xml#0;class#repository_manager#0" />
@@ -139,54 +156,28 @@
                 <element signature="method#create_magit_rec#0;class#repository_manager#0" />
                 <element signature="method#create_magit_directory#0;class#repository_manager#0" />
                 <element signature="method#repository_exist#0;class#repository_manager#0" />
-                <element signature="method#delete_repository#0;class#repository_manager#0" />
-                <element signature="method#delete_branch#0;class#repository_manager#0" />
+                <element signature="method#repository_contain_magit#0;class#repository_manager#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/illegal_branch_deletion_exception.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-              <folding>
-                <element signature="e#188#189#0" expanded="true" />
-                <element signature="e#211#212#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Branch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="107" column="20" selection-start-line="107" selection-start-column="20" selection-end-line="107" selection-end-column="20" />
+            <state relative-caret-position="600">
+              <caret line="81" column="40" selection-start-line="81" selection-start-column="40" selection-end-line="81" selection-end-column="40" />
               <folding>
-                <element signature="e#340#341#0" expanded="true" />
-                <element signature="e#367#368#0" expanded="true" />
                 <element signature="method#Branch#0;class#Branch#0" />
-                <element signature="e#494#515#0" />
                 <element signature="e#1250#1251#0" expanded="true" />
                 <element signature="e#1282#1283#0" expanded="true" />
                 <element signature="method#update_head_file#0;class#Branch#0" />
                 <element signature="method#get_all_branches#0;class#Branch#0" />
-                <element signature="e#1600#1601#0" expanded="true" />
-                <element signature="e#1627#1628#0" expanded="true" />
-                <element signature="e#2635#2636#0" expanded="true" />
-                <element signature="e#2658#2659#0" expanded="true" />
+                <element signature="e#2574#2575#0" expanded="true" />
+                <element signature="e#2601#2602#0" expanded="true" />
+                <element signature="e#2654#2655#0" expanded="true" />
+                <element signature="e#2698#2699#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_192/src.zip!/java/io/FileWriter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="62" selection-start-line="62" selection-end-line="62" />
             </state>
           </provider>
         </entry>
@@ -194,14 +185,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Commit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="357">
+              <caret line="41" selection-start-line="41" selection-end-line="41" />
               <folding>
                 <element signature="method#create_new_commit#0;class#Commit#0" />
                 <element signature="method#Commit#0;class#Commit#0" />
                 <element signature="method#initialize_commit_by_magit_single_commit#0;class#Commit#0" />
-                <element signature="e#1181#1207#0" />
-                <element signature="method#initialize_commitsd#0;class#Commit#0" />
                 <element signature="method#create_commit_content#0;class#Commit#0" />
                 <element signature="method#calc_commit_sha1#0;class#Commit#0" />
                 <element signature="method#get_date#0;class#Commit#0" />
@@ -213,17 +202,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Blob.java">
+        <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/failed_to_delete_repository_exception.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="114" column="33" lean-forward="true" selection-start-line="114" selection-start-column="33" selection-end-line="114" selection-end-column="33" />
+            <state relative-caret-position="34">
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="7" selection-end-column="1" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#create_commited_blob#0;class#Blob#0" />
-                <element signature="method#initialize_blob_from_eist#0;class#Blob#0" />
-                <element signature="method#file_content_changed#0;class#Blob#0" />
-                <element signature="method#file_content_changed#1;class#Blob#0" />
-                <element signature="method#file_exist#0;class#Blob#0" />
+                <element signature="e#198#199#0" expanded="true" />
+                <element signature="e#221#222#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -232,76 +217,64 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Repository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="176" column="34" lean-forward="true" selection-start-line="176" selection-start-column="34" selection-end-line="176" selection-end-column="34" />
+            <state relative-caret-position="566">
+              <caret line="187" column="9" lean-forward="true" selection-start-line="187" selection-start-column="9" selection-end-line="187" selection-end-column="9" />
               <folding>
-                <element signature="e#744#745#0" expanded="true" />
-                <element signature="e#778#779#0" expanded="true" />
+                <element signature="e#886#887#0" expanded="true" />
+                <element signature="e#918#919#0" expanded="true" />
                 <element signature="method#add_commit#0;class#Repository#0" />
                 <element signature="method#add_commited_files#0;class#Repository#0" />
                 <element signature="method#get_commits#0;class#Repository#0" />
                 <element signature="method#update_precedings_commits#0;class#Repository#0" />
+                <element signature="method#switch_commit#0;class#Repository#0" />
+                <element signature="method#synchronize_tree_by_magit#0;class#Repository#0" />
                 <element signature="method#add_branch#0;class#Repository#0" />
                 <element signature="method#find_commit_by_id#0;class#Repository#0" />
-                <element signature="method#branch_init#0;class#Repository#0" />
                 <element signature="method#add_new_branch#0;class#Repository#0" />
-                <element signature="method#delete_branch_and_relevant_commits#0;class#Repository#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Library.java">
+        <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/file_not_exist_exception.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+            <state relative-caret-position="51">
+              <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/no_active_repository_exception.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="6" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/head_branch_deletion_exception.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#update_library_after_childs_creation#0;class#Library#0" />
-                <element signature="e#534#542#0" expanded="true" />
-                <element signature="e#590#598#0" expanded="true" />
-                <element signature="method#Library#0;class#Library#0" />
-                <element signature="method#sort_lines_lexicographic#0;class#Library#0" />
-                <element signature="method#initialize_library#0;class#Library#0" />
-                <element signature="method#directory_content_is_changed#0;class#Library#0" />
-                <element signature="method#create_commited_library#0;class#Library#0" />
+                <element signature="e#254#255#0" expanded="true" />
+                <element signature="e#284#285#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/DataStorage.java">
+        <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/branch_not_found_exception.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+            <state relative-caret-position="34">
+              <caret line="2" column="41" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="41" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2023#2024#0" expanded="true" />
-                <element signature="e#2071#2072#0" expanded="true" />
-                <element signature="e#2123#2124#0" expanded="true" />
-                <element signature="e#2169#2170#0" expanded="true" />
-                <element signature="e#2208#2209#0" expanded="true" />
-                <element signature="e#2243#2244#0" expanded="true" />
-                <element signature="e#2279#2280#0" expanded="true" />
-                <element signature="e#2313#2314#0" expanded="true" />
-                <element signature="e#2353#2354#0" expanded="true" />
-                <element signature="e#2385#2386#0" expanded="true" />
-                <element signature="e#2416#2417#0" expanded="true" />
-                <element signature="e#2443#2444#0" expanded="true" />
-                <element signature="e#2474#2475#0" expanded="true" />
-                <element signature="e#2506#2507#0" expanded="true" />
-                <element signature="e#2568#2569#0" expanded="true" />
-                <element signature="e#2622#2623#0" expanded="true" />
-                <element signature="e#2664#2665#0" expanded="true" />
-                <element signature="e#2702#2703#0" expanded="true" />
-                <element signature="e#2733#2734#0" expanded="true" />
-                <element signature="e#2760#2761#0" expanded="true" />
-                <element signature="e#2800#2801#0" expanded="true" />
-                <element signature="e#2837#2838#0" expanded="true" />
-                <element signature="e#2885#2886#0" expanded="true" />
-                <element signature="e#2925#2926#0" expanded="true" />
+                <element signature="e#237#238#0" expanded="true" />
+                <element signature="e#267#268#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -318,9 +291,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>prece</find>
-      <find>string_to</find>
-      <find>add_commit</find>
       <find>new_commit</find>
       <find>to_</find>
       <find>new</find>
@@ -336,7 +306,6 @@
       <find>xml</find>
       <find>set_hea</find>
       <find>add_bra</find>
-      <find>check</find>
       <find>create_tr</find>
       <find>create_tree</find>
       <find>get_cu</find>
@@ -346,8 +315,12 @@
       <find>curr_library</find>
       <find>switch</find>
       <find>swit</find>
-      <find>update</find>
       <find>init</find>
+      <find>update</find>
+      <find>stdin</find>
+      <find>show</find>
+      <find>sho</find>
+      <find>check</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -356,11 +329,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/XML_file_details/repository_details.java" />
-        <option value="$PROJECT_DIR$/src/managment_engine/xml_details.java" />
-        <option value="$PROJECT_DIR$/src/managment_engine/xml_managment/xml_parse_exception.java" />
-        <option value="$PROJECT_DIR$/src/managment_engine/xml_managment/xml_objects.java" />
-        <option value="$PROJECT_DIR$/src/managment_engine/xml_managment/MagitBlobs.java" />
         <option value="$PROJECT_DIR$/src/managment_engine/xml_managment/MagitCommits.java" />
         <option value="$PROJECT_DIR$/src/managment_engine/xml_managment/MagitBranches.java" />
         <option value="$PROJECT_DIR$/src/managment_engine/xml_managment/MagitRemoteReference.java" />
@@ -399,12 +367,19 @@
         <option value="$PROJECT_DIR$/src/ManagmentEngine/Utils/Library.java" />
         <option value="$PROJECT_DIR$/src/ManagmentEngine/Utils/Blob.java" />
         <option value="$PROJECT_DIR$/src/ManagmentEngine/Utils/Folder.java" />
-        <option value="$PROJECT_DIR$/src/UI/Main.java" />
         <option value="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/illegal_branch_deletion_exception.java" />
-        <option value="$PROJECT_DIR$/src/ManagmentEngine/Utils/Commit.java" />
-        <option value="$PROJECT_DIR$/src/ManagmentEngine/Utils/Repository.java" />
-        <option value="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java" />
+        <option value="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/failed_to_delete_repository_exception.java" />
+        <option value="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/failed_to_create_local_structure_exception.java" />
+        <option value="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/repository_not_found_exception.java" />
+        <option value="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/no_active_repository_exception.java" />
+        <option value="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/branch_not_found_exception.java" />
+        <option value="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/head_branch_deletion_exception.java" />
         <option value="$PROJECT_DIR$/src/ManagmentEngine/Utils/Branch.java" />
+        <option value="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/file_not_exist_exception.java" />
+        <option value="$PROJECT_DIR$/src/ManagmentEngine/Utils/Repository.java" />
+        <option value="$PROJECT_DIR$/src/ManagmentEngine/Utils/Commit.java" />
+        <option value="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java" />
+        <option value="$PROJECT_DIR$/src/UI/Main.java" />
       </list>
     </option>
   </component>
@@ -415,10 +390,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="978" />
-    <option name="height" value="1048" />
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="979" />
+    <option name="height" value="1049" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -462,6 +437,14 @@
               <item name="m.a.git" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="ManagmentEngine" type="462c0819:PsiDirectoryNode" />
+              <item name="RepositoriesManagment" type="462c0819:PsiDirectoryNode" />
+              <item name="RepositoryExceptions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="m.a.git" type="b2602c69:ProjectViewProjectNode" />
+              <item name="m.a.git" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ManagmentEngine" type="462c0819:PsiDirectoryNode" />
               <item name="Utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -483,7 +466,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589420373687" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589468637277" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -541,12 +524,13 @@
       <option name="presentableId" value="Default" />
       <updated>1588766626359</updated>
       <workItem from="1588766630688" duration="967000" />
-      <workItem from="1588837249862" duration="160901000" />
+      <workItem from="1588837249862" duration="161272000" />
+      <workItem from="1589429735061" duration="9765000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161868000" />
+    <option name="totallyTimeSpent" value="172004000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -557,7 +541,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.14966443" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.17785235" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="0" weight="0.32991204" />
       <window_info anchor="bottom" id="Version Control" order="1" show_stripe_button="false" />
@@ -567,7 +551,7 @@
       <window_info anchor="bottom" id="Find" order="5" weight="0.32991204" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.3856305" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Debug" order="8" visible="true" weight="0.3900293" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.3900293" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="11" />
@@ -593,19 +577,19 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/UI/Main.java</url>
-          <line>24</line>
+          <line>26</line>
           <properties />
           <option name="timeStamp" value="955" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/UI/Main.java</url>
-          <line>25</line>
+          <line>27</line>
           <properties />
           <option name="timeStamp" value="956" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/UI/Main.java</url>
-          <line>27</line>
+          <line>29</line>
           <properties />
           <option name="timeStamp" value="957" />
         </line-breakpoint>
@@ -636,153 +620,16 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa25340.9613/XmlDetails.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/bla.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa3720.33844/XmlParseException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="5" column="5" selection-start-line="3" selection-start-column="4" selection-end-line="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/xml_parse_exception.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="32" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/MagitBlobs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/MagitRemoteReference.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/MagitCommits.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/MagitBranches.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa3720.16706/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="41" column="7" selection-start-line="41" selection-start-column="7" selection-end-line="41" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/XML_file_details/repository_details.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/MagitBlob.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="20" column="21" lean-forward="true" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#470#471#0" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-            <element signature="e#451#452#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
-            <element signature="e#593#594#0" expanded="true" />
-            <element signature="e#641#642#0" expanded="true" />
-            <element signature="e#705#706#0" expanded="true" />
-            <element signature="e#761#762#0" expanded="true" />
-            <element signature="e#807#808#0" expanded="true" />
-            <element signature="e#845#846#0" expanded="true" />
-            <element signature="e#1134#1135#0" expanded="true" />
-            <element signature="e#1159#1160#0" expanded="true" />
-            <element signature="e#1190#1191#0" expanded="true" />
-            <element signature="e#1217#1218#0" expanded="true" />
-            <element signature="e#1256#1257#0" expanded="true" />
-            <element signature="e#1291#1292#0" expanded="true" />
-            <element signature="e#1334#1335#0" expanded="true" />
-            <element signature="e#1373#1374#0" expanded="true" />
-            <element signature="e#1407#1408#0" expanded="true" />
-            <element signature="e#1437#1438#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/MagitSingleFolder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#248#249#0" expanded="true" />
-            <element signature="e#276#277#0" expanded="true" />
-            <element signature="e#444#445#0" expanded="true" />
-            <element signature="e#482#483#0" expanded="true" />
-            <element signature="e#417#418#0" expanded="true" />
-            <element signature="e#465#466#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#585#586#0" expanded="true" />
-            <element signature="e#636#637#0" expanded="true" />
-            <element signature="e#670#671#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa3720.22550/XmlDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="218" column="32" selection-start-line="218" selection-start-column="32" selection-end-line="218" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#positionHaveNeighbor#0;class#XmlDetails#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/schema1.xsd">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/MagitRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/MagitCommits.java" />
+    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/MagitBranches.java" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa3720.16706/Game.java" />
+    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/Item.java" />
+    <entry file="file://$PROJECT_DIR$/src/XML_file_details/repository_details.java" />
+    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/MagitBlob.java" />
+    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/MagitSingleFolder.java" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa3720.22550/XmlDetails.java" />
+    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/schema1.xsd" />
+    <entry file="file://$PROJECT_DIR$/src/managment_engine/xml_managment/MagitRepository.java" />
     <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/XML_Managment/MAGit.xsd">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -790,20 +637,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa17560.12812/XmlParseException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="4" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa17560.12812/XmlParseException.java" />
     <entry file="file://$PROJECT_DIR$/../GameDescriptor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="66" column="7" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -811,9 +649,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
           <caret line="299" column="27" selection-start-line="299" selection-start-column="27" selection-end-line="299" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -821,10 +656,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
-          <folding>
-            <element signature="e#139#140#0" expanded="true" />
-            <element signature="e#162#163#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -832,10 +663,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="5" selection-end-column="5" />
-          <folding>
-            <element signature="e#165#166#0" expanded="true" />
-            <element signature="e#195#196#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -843,9 +670,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="51" lean-forward="true" selection-start-line="3" selection-start-column="51" selection-end-line="3" selection-end-column="51" />
-          <folding>
-            <element signature="e#183#184#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -870,17 +694,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/failed_to_create_file_exception.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding>
-            <element signature="e#170#171#0" expanded="true" />
-            <element signature="e#193#194#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MagitRepository/Item.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -899,20 +712,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#630#631#0" expanded="true" />
-            <element signature="e#665#666#0" expanded="true" />
-            <element signature="e#849#850#0" expanded="true" />
-            <element signature="e#870#871#0" expanded="true" />
-            <element signature="method#commits_points_to_root#0;class#xml_details#0" />
-            <element signature="method#folders_pointers_valid#0;class#xml_details#0" />
-            <element signature="method#get_folders_ids#0;class#xml_details#0" />
-            <element signature="e#2122#2130#0" expanded="true" />
-            <element signature="method#get_blobs_ids#0;class#xml_details#0" />
-            <element signature="e#2124#2132#0" expanded="true" />
-            <element signature="e#1063#1071#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -920,9 +719,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="1769" selection-start-line="1769" selection-end-line="1769" />
-          <folding>
-            <element signature="e#71104#71105#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -958,9 +754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
           <caret line="133" selection-start-line="133" selection-end-line="133" />
-          <folding>
-            <element signature="e#3155#3156#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -996,62 +789,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/DataStorage.java">
+    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/illegal_branch_deletion_exception.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1904">
-          <caret line="112" column="36" selection-start-line="112" selection-start-column="36" selection-end-line="112" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2013#2014#0" expanded="true" />
-            <element signature="e#2061#2062#0" expanded="true" />
-            <element signature="e#2113#2114#0" expanded="true" />
-            <element signature="e#2159#2160#0" expanded="true" />
-            <element signature="e#2198#2199#0" expanded="true" />
-            <element signature="e#2233#2234#0" expanded="true" />
-            <element signature="e#2269#2270#0" expanded="true" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2343#2344#0" expanded="true" />
-            <element signature="e#2375#2376#0" expanded="true" />
-            <element signature="e#2406#2407#0" expanded="true" />
-            <element signature="e#2433#2434#0" expanded="true" />
-            <element signature="e#2464#2465#0" expanded="true" />
-            <element signature="e#2496#2497#0" expanded="true" />
-            <element signature="e#2558#2559#0" expanded="true" />
-            <element signature="e#2612#2613#0" expanded="true" />
-            <element signature="e#2654#2655#0" expanded="true" />
-            <element signature="e#2692#2693#0" expanded="true" />
-            <element signature="e#2723#2724#0" expanded="true" />
-            <element signature="e#2750#2751#0" expanded="true" />
-            <element signature="e#2790#2791#0" expanded="true" />
-            <element signature="e#2827#2828#0" expanded="true" />
-            <element signature="e#2875#2876#0" expanded="true" />
-            <element signature="e#2915#2916#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="51">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Library.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_192/src.zip!/java/io/FileWriter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+        <state relative-caret-position="663">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Blob.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1326">
+          <caret line="114" column="33" selection-start-line="114" selection-start-column="33" selection-end-line="114" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#update_library_after_childs_creation#0;class#Library#0" />
-            <element signature="e#534#542#0" expanded="true" />
-            <element signature="e#590#598#0" expanded="true" />
-            <element signature="method#Library#0;class#Library#0" />
-            <element signature="method#sort_lines_lexicographic#0;class#Library#0" />
-            <element signature="method#initialize_library#0;class#Library#0" />
-            <element signature="method#directory_content_is_changed#0;class#Library#0" />
-            <element signature="method#create_commited_library#0;class#Library#0" />
+            <element signature="method#create_commited_blob#0;class#Blob#0" />
+            <element signature="method#initialize_blob_from_eist#0;class#Blob#0" />
+            <element signature="method#file_content_changed#0;class#Blob#0" />
+            <element signature="method#file_content_changed#1;class#Blob#0" />
+            <element signature="method#file_exist#0;class#Blob#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/DataStorage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        <state relative-caret-position="34">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2023#2024#0" expanded="true" />
@@ -1082,59 +852,148 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_192/src.zip!/java/io/FileWriter.java">
+    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Library.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Blob.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="114" column="33" lean-forward="true" selection-start-line="114" selection-start-column="33" selection-end-line="114" selection-end-column="33" />
+        <state relative-caret-position="72">
+          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#create_commited_blob#0;class#Blob#0" />
-            <element signature="method#initialize_blob_from_eist#0;class#Blob#0" />
-            <element signature="method#file_content_changed#0;class#Blob#0" />
-            <element signature="method#file_content_changed#1;class#Blob#0" />
-            <element signature="method#file_exist#0;class#Blob#0" />
+            <element signature="method#update_library_after_childs_creation#0;class#Library#0" />
+            <element signature="method#Library#0;class#Library#0" />
+            <element signature="method#sort_lines_lexicographic#0;class#Library#0" />
+            <element signature="method#initialize_library#0;class#Library#0" />
+            <element signature="method#directory_content_is_changed#0;class#Library#0" />
+            <element signature="method#create_commited_library#0;class#Library#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/illegal_branch_deletion_exception.java">
+    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/failed_to_create_local_structure_exception.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+          <folding>
+            <element signature="e#200#201#0" expanded="true" />
+            <element signature="e#223#224#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/repository_not_found_exception.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
           <folding>
-            <element signature="e#188#189#0" expanded="true" />
-            <element signature="e#211#212#0" expanded="true" />
+            <element signature="e#184#185#0" expanded="true" />
+            <element signature="e#207#208#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/failed_to_create_file_exception.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="7" selection-end-column="1" />
+          <folding>
+            <element signature="e#193#194#0" expanded="true" />
+            <element signature="e#223#224#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/failed_to_delete_repository_exception.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="7" selection-end-column="1" />
+          <folding>
+            <element signature="e#198#199#0" expanded="true" />
+            <element signature="e#221#222#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/head_branch_deletion_exception.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
           <folding>
-            <element signature="method#handle_update_user_name#0;class#Main#0" />
+            <element signature="e#254#255#0" expanded="true" />
+            <element signature="e#284#285#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/branch_not_found_exception.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="41" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="41" />
+          <folding>
+            <element signature="e#237#238#0" expanded="true" />
+            <element signature="e#267#268#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Branch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="81" column="40" selection-start-line="81" selection-start-column="40" selection-end-line="81" selection-end-column="40" />
+          <folding>
+            <element signature="method#Branch#0;class#Branch#0" />
+            <element signature="e#1250#1251#0" expanded="true" />
+            <element signature="e#1282#1283#0" expanded="true" />
+            <element signature="method#update_head_file#0;class#Branch#0" />
+            <element signature="method#get_all_branches#0;class#Branch#0" />
+            <element signature="e#2574#2575#0" expanded="true" />
+            <element signature="e#2601#2602#0" expanded="true" />
+            <element signature="e#2654#2655#0" expanded="true" />
+            <element signature="e#2698#2699#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/no_active_repository_exception.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/file_not_exist_exception.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Repository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="187" column="9" lean-forward="true" selection-start-line="187" selection-start-column="9" selection-end-line="187" selection-end-column="9" />
+          <folding>
+            <element signature="e#886#887#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
+            <element signature="method#add_commit#0;class#Repository#0" />
+            <element signature="method#add_commited_files#0;class#Repository#0" />
+            <element signature="method#get_commits#0;class#Repository#0" />
+            <element signature="method#update_precedings_commits#0;class#Repository#0" />
+            <element signature="method#switch_commit#0;class#Repository#0" />
+            <element signature="method#synchronize_tree_by_magit#0;class#Repository#0" />
+            <element signature="method#add_branch#0;class#Repository#0" />
+            <element signature="method#find_commit_by_id#0;class#Repository#0" />
+            <element signature="method#add_new_branch#0;class#Repository#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Commit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="357">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
           <folding>
             <element signature="method#create_new_commit#0;class#Commit#0" />
             <element signature="method#Commit#0;class#Commit#0" />
             <element signature="method#initialize_commit_by_magit_single_commit#0;class#Commit#0" />
-            <element signature="e#1181#1207#0" />
-            <element signature="method#initialize_commitsd#0;class#Commit#0" />
             <element signature="method#create_commit_content#0;class#Commit#0" />
             <element signature="method#calc_commit_sha1#0;class#Commit#0" />
             <element signature="method#get_date#0;class#Commit#0" />
@@ -1144,45 +1003,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Repository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="176" column="34" lean-forward="true" selection-start-line="176" selection-start-column="34" selection-end-line="176" selection-end-column="34" />
-          <folding>
-            <element signature="e#744#745#0" expanded="true" />
-            <element signature="e#778#779#0" expanded="true" />
-            <element signature="method#add_commit#0;class#Repository#0" />
-            <element signature="method#add_commited_files#0;class#Repository#0" />
-            <element signature="method#get_commits#0;class#Repository#0" />
-            <element signature="method#update_precedings_commits#0;class#Repository#0" />
-            <element signature="method#add_branch#0;class#Repository#0" />
-            <element signature="method#find_commit_by_id#0;class#Repository#0" />
-            <element signature="method#branch_init#0;class#Repository#0" />
-            <element signature="method#add_new_branch#0;class#Repository#0" />
-            <element signature="method#delete_branch_and_relevant_commits#0;class#Repository#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="35" column="60" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="60" />
+        <state relative-caret-position="238">
+          <caret line="95" column="45" lean-forward="true" selection-start-line="95" selection-start-column="45" selection-end-line="95" selection-end-column="45" />
           <folding>
-            <element signature="e#956#957#0" expanded="true" />
-            <element signature="e#1039#1040#0" expanded="true" />
-            <element signature="method#get_branches#0;class#repository_manager#0" />
-            <element signature="method#add_new_branch#0;class#repository_manager#0" />
-            <element signature="method#checkout#0;class#repository_manager#0" />
-            <element signature="method#find_folder_by_sha1#0;class#repository_manager#0" />
-            <element signature="method#working_copy_area_status#0;class#repository_manager#0" />
-            <element signature="e#2837#2883#0" />
+            <element signature="method#active_brance_history#0;class#repository_manager#0" />
+            <element signature="method#find_root_library_by_sha1#0;class#repository_manager#0" />
+            <element signature="e#2897#2943#0" />
             <element signature="method#added_changes#0;class#repository_manager#0" />
             <element signature="method#commit_changes#0;class#repository_manager#0" />
             <element signature="method#find_working_copy_changes#0;class#repository_manager#0" />
             <element signature="method#update_new_folders#0;class#repository_manager#0" />
             <element signature="method#find_commit_by_id#0;class#repository_manager#0" />
-            <element signature="method#find_current_commit#0;class#repository_manager#0" />
+            <element signature="method#find_current_commit_id#0;class#repository_manager#0" />
             <element signature="method#initalize_repository#0;class#repository_manager#0" />
             <element signature="method#create_system_structure#0;class#repository_manager#0" />
             <element signature="method#add_brances_from_xml#0;class#repository_manager#0" />
@@ -1199,29 +1033,31 @@
             <element signature="method#create_magit_rec#0;class#repository_manager#0" />
             <element signature="method#create_magit_directory#0;class#repository_manager#0" />
             <element signature="method#repository_exist#0;class#repository_manager#0" />
-            <element signature="method#delete_repository#0;class#repository_manager#0" />
-            <element signature="method#delete_branch#0;class#repository_manager#0" />
+            <element signature="method#repository_contain_magit#0;class#repository_manager#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/Utils/Branch.java">
+    <entry file="file://$PROJECT_DIR$/src/UI/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="107" column="20" selection-start-line="107" selection-start-column="20" selection-end-line="107" selection-end-column="20" />
+        <state>
+          <caret lean-forward="true" />
           <folding>
-            <element signature="e#340#341#0" expanded="true" />
-            <element signature="e#367#368#0" expanded="true" />
-            <element signature="method#Branch#0;class#Branch#0" />
-            <element signature="e#494#515#0" />
-            <element signature="e#1250#1251#0" expanded="true" />
-            <element signature="e#1282#1283#0" expanded="true" />
-            <element signature="method#update_head_file#0;class#Branch#0" />
-            <element signature="method#get_all_branches#0;class#Branch#0" />
-            <element signature="e#1600#1601#0" expanded="true" />
-            <element signature="e#1627#1628#0" expanded="true" />
-            <element signature="e#2635#2636#0" expanded="true" />
-            <element signature="e#2658#2659#0" expanded="true" />
+            <element signature="method#main#0;class#Main#0" />
+            <element signature="e#1180#1220#0" />
+            <element signature="method#execute_operations#0;class#Main#0" />
+            <element signature="method#handle_user_choice#0;class#Main#0" />
+            <element signature="method#handle_branch_history#0;class#Main#0" />
+            <element signature="method#handle_checkout#0;class#Main#0" />
+            <element signature="method#remove_branch#0;class#Main#0" />
+            <element signature="method#create_new_branch#0;class#Main#0" />
+            <element signature="method#show_all_branches#0;class#Main#0" />
+            <element signature="method#show_working_stage_area#0;class#Main#0" />
+            <element signature="method#handle_commit_history#0;class#Main#0" />
+            <element signature="method#handle_switch_repository#0;class#Main#0" />
+            <element signature="method#handle_update_user_name#0;class#Main#0" />
+            <element signature="method#handle_load_xml#0;class#Main#0" />
+            <element signature="method#show_manu#0;class#Main#0" />
           </folding>
         </state>
       </provider>

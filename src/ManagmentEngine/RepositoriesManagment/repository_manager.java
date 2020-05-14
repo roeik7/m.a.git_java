@@ -8,7 +8,7 @@ package ManagmentEngine.RepositoriesManagment;
 import MagitRepository.MagitBlob;
 import MagitRepository.MagitRepository;
 import MagitRepository.MagitSingleFolder;
-import ManagmentEngine.RepositoriesManagment.RepositoryExceptions.failed_to_create_file_exception;
+import ManagmentEngine.RepositoriesManagment.RepositoryExceptions.*;
 import ManagmentEngine.Utils.*;
 import ManagmentEngine.XML_Managment.xml_details;
 import org.apache.commons.io.FileUtils;
@@ -29,42 +29,97 @@ public class repository_manager {
     ArrayList<Repository> repositories;
     Repository curr_repository;
     MagitRepository jaxb_repository;
-
+    boolean repository_load_successfully;
     boolean manage_existing_repo;
 
-    public String active_brance_history(){
-        String res = curr_repository.getBranches().get_head_branch_history();
+    public String active_brance_history() throws no_active_repository_exception {
+        String res;
+
+        if(repository_load_successfully){
+            res = curr_repository.getBranches().get_head_branch_history();
+        }
+        else{
+            throw new no_active_repository_exception("There is no active reposstory, so there's nothing to show about commits.");
+        }
 
         return res;
     }
 
-    public ArrayList get_branches(){
+    public ArrayList get_branches() throws no_active_repository_exception {
         Map<String, LinkedList<Commit>> active_branches = curr_repository.get_all_branches();
         ArrayList<String> branches_details=new ArrayList<>();
         String single_branch = new String();
         Iterator<Map.Entry<String, LinkedList<Commit>> > it = active_branches.entrySet().iterator();
 
-        while(it.hasNext()){
-            Map.Entry<String, LinkedList<Commit>> entry = it.next();
-            single_branch=("Brance Name: "+entry.getKey()+"\n"+
+        if(repository_load_successfully){
+
+            while(it.hasNext()){
+                Map.Entry<String, LinkedList<Commit>> entry = it.next();
+                single_branch=("Brance Name: "+entry.getKey()+"\n"+
                         "Sha-1 of pointed commit: "+entry.getValue().getLast().getSha1()+"\n"+
                         "Commit Message: "+entry.getValue().getLast().getCommit_essence()+"\n");
-            branches_details.add(single_branch);
+                branches_details.add(single_branch);
+            }
         }
+        else{
+            throw new no_active_repository_exception("There is no active repository, so there is no branches to show.");
+        }
+
+
 
     return branches_details;
     }
 
-    public void add_new_branch(String new_branch){
+    public void add_new_branch(String new_branch) throws no_active_repository_exception {
         try {
-            curr_repository.add_new_branch(new_branch);
+            if(repository_load_successfully){
+                curr_repository.add_new_branch(new_branch);
+            }
+            else{
+                throw new no_active_repository_exception("There is no active repository, so there is no branches to show.");
+            }
         } catch (IOException e) {
             System.out.println("Error to add new branch.\n");
             e.printStackTrace();
         }
     }
 
-    void checkout(String branch_name){
+    public String commit_history() throws file_not_exist_exception, no_active_repository_exception {
+        String res;
+        if(repository_load_successfully){
+            Commit curr_commit=curr_repository.get_current_commit();
+            Library  root= (Library) curr_repository.get_DataStorage_by_sha1(curr_commit.getMain_library_sha1());
+            res = get_tree_details(root, curr_repository.getRepo_path());
+            return res;
+        }
+
+        throw new no_active_repository_exception("There is no active repository.");
+    }
+
+    private String get_tree_details(DataStorage root, String path) {
+        String res;
+
+        if(root.getType().equals("blob")){
+            return "File Path: "+path+"\n"+
+                    "Type: Blob\n"+
+                    "File SHA1: "+root.getSha1()+"\n"+
+                    "Last updater: "+root.getLast_updater()+"\n"+
+                    "Last update: "+root.getLast_update()+"\n\n";
+        }
+        res = "Library Path: "+path+"\n"+
+                "Type: Library\n"+
+                "Library SHA1: "+root.getSha1()+"\n"+
+                "Last updater: "+root.getLast_updater()+"\n"+
+                "Last update: "+root.getLast_update()+"\n\n";
+
+        for (int i = 0; i <((Library)root).getChilds().size() ; i++) {
+            res+=get_tree_details(((Library) root).getChilds().get(i), path+"\\"+((Library) root).getChilds().get(i).getName());
+        }
+
+        return res;
+    }
+
+    public void checkout(String branch_name) throws head_branch_deletion_exception, branch_not_found_exception {
         try {
             curr_repository.switch_branch(branch_name);
         } catch (IOException e) {
@@ -253,20 +308,27 @@ public class repository_manager {
         return res;
     }
 
-    public void initalize_repository(xml_details xml, boolean manage_existing){
+    public void initalize_repository(xml_details xml, boolean manage_existing) throws failed_to_create_local_structure_exception {
         try {
             if(repositories==null){
                 repositories = new ArrayList<Repository>();
             }
+
+            //get the parsed object of the xml
             jaxb_repository = xml.getRepo_details();
 
-            create_system_structure(); //if its new repository - create system managment (.magit file and all related files)  (centralized information)
+            //if its new repository - create system managment (.magit and all related files)  (centralized information)
+            create_system_structure();
             curr_repository.setRepo_name(jaxb_repository.getName());
             curr_repository.setRepo_path(jaxb_repository.getLocation());
-            //synchoronize_relevant_commit();
+
+            //If the project is not saved with the client
             if(!manage_existing){
                 create_local_structure();
             }
+
+            repository_load_successfully=true;
+
         }
 
         catch (ParseException e) {
@@ -410,23 +472,26 @@ public class repository_manager {
         return res;
     }
 
-    private void create_local_structure() {
+    private void create_local_structure() throws failed_to_create_local_structure_exception {
         try {
-            create_magit_directory();
-            create_objects_and_branches(curr_repository.getRepo_path());
-            Library objects = (Library) curr_repository.get_nagit_library().getChilds().get(0);
+            if(repository_contain_magit(curr_repository.getRepo_path())){
+                create_magit_directory();
+                create_objects_and_branches(curr_repository.getRepo_path());
+                Library objects = (Library) curr_repository.get_nagit_library().getChilds().get(0);
 
-            for (int i = 0; i <objects.getChilds().size() ; i++) {
-                create_magit_rec(objects.getChilds().get(i), curr_repository.getRepo_path()+"\\.magit\\objects");
-                create_magit_rec(curr_repository.get_commits().get(i),curr_repository.getRepo_path()+"\\.magit\\objects");
+                for (int i = 0; i <objects.getChilds().size() ; i++) {
+                    create_magit_rec(objects.getChilds().get(i), curr_repository.getRepo_path()+"\\.magit\\objects");
+                    create_magit_rec(curr_repository.get_commits().get(i),curr_repository.getRepo_path()+"\\.magit\\objects");
+                }
             }
 
             create_system_by_magit();
-            curr_repository.branch_init(jaxb_repository.getMagitBranches().getHead());
+            String branch_name = jaxb_repository==null? curr_repository.getBranches().getHead_name() : jaxb_repository.getMagitBranches().getHead();
+            curr_repository.branch_init(branch_name);
             //create_commits_files();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new failed_to_create_local_structure_exception("Failed to create local structure.");
         }
     }
 
@@ -496,31 +561,54 @@ public class repository_manager {
 
     }
 
-    public boolean repository_exist(String repo_path) {
-        Path path= Paths.get(repo_path);
-
-        return Files.exists(path);
+    public boolean repository_exist(String repository_name) {
+        if(repositories.contains(repository_name)){
+            return true;
+        }
+        return false;
     }
 
-    public String delete_repository(String path) {
-        String message = "Success";
+    public boolean delete_repository(String path) throws failed_to_delete_repository_exception {
+        boolean deleted= false;
         try {
             FileUtils.deleteDirectory(new File(path));
-            message="Success";
-
+            deleted=true;
         } catch (IOException e) {
-            message = "Cant delete content.\n"+e.getMessage();
-
+            throw new failed_to_delete_repository_exception("Failed to delete this repoistory.\n");
         }
 
-        return message;
+        return deleted;
     }
 
-    public void delete_branch(String branch_name){
+    public void delete_branch(String branch_name) throws no_active_repository_exception, illegal_branch_deletion_exception {
         try {
-            curr_repository.delete_branch(branch_name);
-        } catch (ManagmentEngine.RepositoriesManagment.RepositoryExceptions.illegal_branch_deletion_exception e) {
-            System.out.println(e.getMessage());
+            if(repository_load_successfully){
+                curr_repository.delete_branch(branch_name);
+            }
+            throw new no_active_repository_exception("There is no active repository, so there is no branch to delete");
+        } catch (illegal_branch_deletion_exception | no_active_repository_exception e) {
+            throw new illegal_branch_deletion_exception(e.getMessage());
         }
+    }
+
+
+    public void initialize_old_repository(String repo_name) throws repository_not_found_exception {
+        for (int i = 0; repositories!=null && i <repositories.size() ; i++) {
+            if(repositories.get(i).getRepo_name().equals(repo_name)){
+                curr_repository = repositories.get(i);
+                repository_load_successfully=true;
+                return;
+            }
+        }
+        repository_load_successfully=false;
+        throw new repository_not_found_exception("Old repository may not exist.");
+    }
+
+
+    //check if the specified path contain magit file (versions management file)
+    public boolean repository_contain_magit(String repository_path) {
+        Path path= Paths.get(repository_path);
+
+        return Files.exists(path);
     }
 }

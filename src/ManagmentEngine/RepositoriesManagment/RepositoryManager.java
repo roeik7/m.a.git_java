@@ -32,6 +32,116 @@ public class RepositoryManager {
     boolean repository_load_successfully;
 
 
+    //commit_details[0] - user_name
+    //commit_details[1] - commit message
+    //check if there are open changes in working stage - if so -> create the tree that is spread from the tree root
+    //after new tree creation - add new commit with the specified details(creator, current time)
+    public void commit_changes(String []commit_details) throws NoSuchAlgorithmException, IOException, ParseException, no_active_repository_exception, everything_up_to_date_exception, failed_to_create_file_exception {
+
+        if(repository_load_successfully){
+            String changes[] = working_copy_area_status();
+            Library new_root;
+            Commit new_commit;
+            File file = new File(curr_repository.getRepo_path());
+
+            if(changes!=null) {
+                new_root = (Library) curr_repository.create_tree_from_exist(commit_details, file, true);
+                new_commit = Commit.create_new_commit(curr_repository, new_root, commit_details);
+                curr_repository.add_commit(new_commit, new_root,curr_repository.getBranches().getHead_name());
+            }
+
+            else{
+                throw new everything_up_to_date_exception("The working stage is clean, so theres nothing to commit");
+            }
+        }
+
+        else{
+            throw new no_active_repository_exception("There is no active repository so theres notheing to commit");
+        }
+    }
+
+    //begin to traverse the current tree from tha path specified by the curr root and check if tha sha1 of any of the nodes changed
+    //return:
+    //changes[0] - content modified (file content or directory structure changed)
+    //changes[1] - removed/renamed (files/directories removed or renamed)
+    //changes[2] - added (new files/directory)
+
+    public String [] working_copy_area_status(){
+        if(repository_load_successfully){
+            String [] changes= {"","",""};
+
+            try {
+                Library root = curr_repository.getCurr_structure();
+
+                find_working_copy_changes(root, curr_repository.getRepo_path(), changes);
+            } catch (IOException e) {
+                System.out.println("Error to find changes in working copy area.\n");
+                e.printStackTrace();
+            }
+
+
+            if(!added_changes(changes)){
+                changes=null;
+            }
+
+            return changes;
+        }
+
+        return null;
+    }
+
+    //changes[0] - content modified
+    //changes[1] - removed/renamed
+    //changes[2] - added
+    private void find_working_copy_changes(DataStorage node, String path, String changes[]) throws IOException {
+        String new_path;
+        boolean is_modified, exist;
+        Blob blob;
+        Library library;
+
+        if(node.getType().equals("blob")){
+            blob = (Blob)node;
+            exist=Blob.file_exist(path);
+
+            if(exist){
+                is_modified=blob.file_content_changed(node, path);
+                if(is_modified){
+                    changes[0] = changes[0].concat("File: "+path+ " is modified.\n");
+                }
+            }
+
+            else{
+                changes[1] = changes[1].concat("File: "+path + " is removed/renamed.\n");
+            }
+
+            return;
+        }
+
+
+        //library case
+        library = (Library) node;
+        exist =library.directory_exist(path);
+
+        if (exist) {
+            is_modified = library.directory_content_is_changed(library, path);
+
+            if (is_modified){
+                changes[0]=changes[0].concat("Directory: "+path+" is modified.\n");
+            }
+        }
+
+        else{
+            changes[1] = changes[1].concat("Directory: "+path+" is removed/renamed.\n");
+        }
+
+        update_new_folders(path, library, changes);
+
+        for (int i = 0; i <library.getChilds().size() ; i++) {
+            new_path = path + "\\" + library.getChilds().get(i).getName();
+            find_working_copy_changes(library.getChilds().get(i), new_path, changes);
+        }
+    }
+
     //initialize completely new repository from given path
     //at the beginning will contain only one commit and one branch
     public void initialize_repository_from_local(String path, String repository_name, String username, String commit_message) throws failed_to_create_file_exception, branch_not_found_exception {
@@ -78,6 +188,10 @@ public class RepositoryManager {
         repository_load_successfully=true;
     }
 
+
+    public void export_active_repoistory_to_xml(){
+        
+    }
 
     //initialize repository details (name, path, libraries, blobs, commits, branches..) derives from the xml files
     private Repository create_repository_by_jaxb_object() throws NoSuchAlgorithmException, ParseException, IOException, failed_to_create_file_exception {
@@ -239,114 +353,6 @@ public class RepositoryManager {
         }
 
         return is_changed;
-    }
-
-    //commit_details[0] - user_name
-    //commit_details[1] - commit message
-    public void commit_changes(String []commit_details) throws NoSuchAlgorithmException, IOException, ParseException, no_active_repository_exception, everything_up_to_date_exception, failed_to_create_file_exception {
-
-        if(repository_load_successfully){
-            String changes[] = working_copy_area_status();
-            Library new_root;
-            Commit new_commit;
-            File file = new File(curr_repository.getRepo_path());
-
-            if(changes!=null) {
-                new_root = (Library) curr_repository.create_tree_from_exist(commit_details, file, true);
-                new_commit = Commit.create_new_commit(curr_repository, new_root, commit_details);
-                curr_repository.add_commit(new_commit, new_root,curr_repository.getBranches().getHead_name());
-            }
-
-            else{
-                throw new everything_up_to_date_exception("The working stage is clean, so theres nothing to commit");
-            }
-        }
-
-    else{
-        throw new no_active_repository_exception("There is no active repository so theres notheing to commit");
-        }
-    }
-
-    //begin to traverse the current tree from tha path specified by the curr root and check if tha sha1 of any of the nodes changed
-    //return:
-    //changes[0] - content modified (file content or directory structure changed)
-    //changes[1] - removed/renamed (files/directories removed or renamed)
-    //changes[2] - added (new files/directory)
-
-    public String [] working_copy_area_status(){
-        if(repository_load_successfully){
-            String [] changes= {"","",""};
-
-            try {
-                Library root = curr_repository.getCurr_structure();
-
-                find_working_copy_changes(root, curr_repository.getRepo_path(), changes);
-            } catch (IOException e) {
-                System.out.println("Error to find changes in working copy area.\n");
-                e.printStackTrace();
-            }
-
-
-            if(!added_changes(changes)){
-                changes=null;
-            }
-
-            return changes;
-        }
-
-        return null;
-    }
-
-    //changes[0] - content modified
-    //changes[1] - removed/renamed
-    //changes[2] - added
-    private void find_working_copy_changes(DataStorage node, String path, String changes[]) throws IOException {
-        String new_path;
-        boolean is_modified, exist;
-        Blob blob;
-        Library library;
-
-        if(node.getType().equals("blob")){
-            blob = (Blob)node;
-            exist=Blob.file_exist(path);
-
-            if(exist){
-                is_modified=blob.file_content_changed(node, path);
-                if(is_modified){
-                    changes[0] = changes[0].concat("File: "+path+ " is modified.\n");
-                }
-            }
-
-            else{
-                changes[1] = changes[1].concat("File: "+path + " is removed/renamed.\n");
-            }
-
-            return;
-        }
-
-
-        //library case
-        library = (Library) node;
-        exist =library.directory_exist(path);
-
-        if (exist) {
-            is_modified = library.directory_content_is_changed(library, path);
-
-            if (is_modified){
-                changes[0]=changes[0].concat("Directory: "+path+" is modified.\n");
-            }
-        }
-
-        else{
-            changes[1] = changes[1].concat("Directory: "+path+" is removed/renamed.\n");
-        }
-
-        update_new_folders(path, library, changes);
-
-        for (int i = 0; i <library.getChilds().size() ; i++) {
-            new_path = path + "\\" + library.getChilds().get(i).getName();
-            find_working_copy_changes(library.getChilds().get(i), new_path, changes);
-        }
     }
 
     //check if added new files/directory in specified path and update changes if so

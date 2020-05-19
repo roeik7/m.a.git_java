@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="25532d93-9b9e-4c8c-9d2e-e26d3eb96ccc" name="Default Changelist" comment="" />
+    <list default="true" id="25532d93-9b9e-4c8c-9d2e-e26d3eb96ccc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryManager.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,13 +77,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="11" />
-          <entry key="java" value="43576" />
+          <entry key="java" value="43672" />
           <entry key="xsd" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="43576" />
+          <entry key="JAVA" value="43672" />
           <entry key="PLAIN_TEXT" value="11" />
           <entry key="XML" value="1" />
         </counts>
@@ -116,9 +118,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="274" lean-forward="true" selection-start-line="274" selection-end-line="274" />
+            <state relative-caret-position="289">
+              <caret line="36" column="82" selection-start-line="36" selection-start-column="82" selection-end-line="36" selection-end-column="82" />
               <folding>
+                <element signature="method#commit_changes#0;class#RepositoryManager#0" />
+                <element signature="method#working_copy_area_status#0;class#RepositoryManager#0" />
+                <element signature="method#find_working_copy_changes#0;class#RepositoryManager#0" />
                 <element signature="method#initialize_repository_from_local#0;class#RepositoryManager#0" />
                 <element signature="method#initialize_repository_from_scratch_by_xml#0;class#RepositoryManager#0" />
                 <element signature="method#create_repository_by_jaxb_object#0;class#RepositoryManager#0" />
@@ -130,9 +135,6 @@
                 <element signature="method#checkout#0;class#RepositoryManager#0" />
                 <element signature="method#find_root_library_by_sha1#0;class#RepositoryManager#0" />
                 <element signature="method#added_changes#0;class#RepositoryManager#0" />
-                <element signature="method#commit_changes#0;class#RepositoryManager#0" />
-                <element signature="method#working_copy_area_status#0;class#RepositoryManager#0" />
-                <element signature="method#find_working_copy_changes#0;class#RepositoryManager#0" />
                 <element signature="method#update_new_folders#0;class#RepositoryManager#0" />
                 <element signature="method#find_commit_by_id#0;class#RepositoryManager#0" />
                 <element signature="method#find_current_commit_id#0;class#RepositoryManager#0" />
@@ -372,7 +374,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="980" />
@@ -444,7 +446,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589904122239" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589905101370" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -506,12 +508,12 @@
       <workItem from="1589429735061" duration="12886000" />
       <workItem from="1589745540961" duration="4104000" />
       <workItem from="1589753187447" duration="25553000" />
-      <workItem from="1589890503245" duration="3710000" />
+      <workItem from="1589890503245" duration="4401000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208492000" />
+    <option name="totallyTimeSpent" value="209183000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -1033,9 +1035,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="274" lean-forward="true" selection-start-line="274" selection-end-line="274" />
+        <state relative-caret-position="289">
+          <caret line="36" column="82" selection-start-line="36" selection-start-column="82" selection-end-line="36" selection-end-column="82" />
           <folding>
+            <element signature="method#commit_changes#0;class#RepositoryManager#0" />
+            <element signature="method#working_copy_area_status#0;class#RepositoryManager#0" />
+            <element signature="method#find_working_copy_changes#0;class#RepositoryManager#0" />
             <element signature="method#initialize_repository_from_local#0;class#RepositoryManager#0" />
             <element signature="method#initialize_repository_from_scratch_by_xml#0;class#RepositoryManager#0" />
             <element signature="method#create_repository_by_jaxb_object#0;class#RepositoryManager#0" />
@@ -1047,9 +1052,6 @@
             <element signature="method#checkout#0;class#RepositoryManager#0" />
             <element signature="method#find_root_library_by_sha1#0;class#RepositoryManager#0" />
             <element signature="method#added_changes#0;class#RepositoryManager#0" />
-            <element signature="method#commit_changes#0;class#RepositoryManager#0" />
-            <element signature="method#working_copy_area_status#0;class#RepositoryManager#0" />
-            <element signature="method#find_working_copy_changes#0;class#RepositoryManager#0" />
             <element signature="method#update_new_folders#0;class#RepositoryManager#0" />
             <element signature="method#find_commit_by_id#0;class#RepositoryManager#0" />
             <element signature="method#find_current_commit_id#0;class#RepositoryManager#0" />

@@ -14,23 +14,15 @@ public class Commit extends DataStorage {
     private ArrayList<String> precedings_commits_sha1;
     private String commit_essence;
     private String main_library_sha1;
+    private String id;
 
     public String getCommit_essence() {
         return commit_essence;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    private String id;
-    //private String updater;
-
-
     public static Commit create_new_commit(Repository curr_repo, Library new_root, String[] commit_details) throws NoSuchAlgorithmException, ParseException {
         Commit commit = new Commit();
-        commit.initialize_commit(new_root,commit_details[1], commit_details[0], date_to_string(get_current_time()), null);
-        //commit.precedings_commits_sha1=new ArrayList<String>();
+        commit.initialize_commit(new_root,commit_details[1], commit_details[0], date_to_string(get_current_time()),null);
         commit.precedings_commits_sha1.add(curr_repo.curr_commit.sha1);
 
         return commit;
@@ -42,16 +34,14 @@ public class Commit extends DataStorage {
 
     public Commit() throws NoSuchAlgorithmException {
         super.initialize_sha1();
+        precedings_commits_sha1 = new ArrayList<String>();
     }
 
     public void initialize_commit_by_magit_single_commit(MagitSingleCommit magitSingleCommit, Library main_lib_curr_commit) throws ParseException, NoSuchAlgorithmException {
-        //String prev_commit_sha1;
-
-        //removed id last parameter
-        initialize_commit(main_lib_curr_commit, magitSingleCommit.getMessage(),magitSingleCommit.getAuthor(), magitSingleCommit.getDateOfCreation(),magitSingleCommit.getId());
+        initialize_commit(main_lib_curr_commit, magitSingleCommit.getMessage(),magitSingleCommit.getAuthor(), magitSingleCommit.getDateOfCreation(), magitSingleCommit.getId());
     }
 
-    private void initialize_commit(Library main_lib_curr_commit, String message, String author, String dateOfCreation, String id) throws ParseException, NoSuchAlgorithmException {
+    public void initialize_commit(Library main_lib_curr_commit, String message, String author, String dateOfCreation, String id) throws ParseException, NoSuchAlgorithmException {
         type="commit";
         main_library_sha1 = main_lib_curr_commit.sha1;
         commit_essence = message;
@@ -59,7 +49,7 @@ public class Commit extends DataStorage {
         setLast_update( get_date(dateOfCreation));
         sha1 = calc_commit_sha1();
         this.id = id==null? sha1 : id;
-        //textual_content = create_commit_content();
+        textual_content = create_commit_content();
         precedings_commits_sha1 = new ArrayList<String>();
     }
 
@@ -110,7 +100,11 @@ public class Commit extends DataStorage {
         return formatter.parse(dateOfCreation);
     }
 
-    public void update_precedings_commits_sha1(MagitSingleCommit magit_commit,ArrayList<Commit>commits ) {
+    public String getId() {
+        return id;
+    }
+
+    public void update_precedings_commits_sha1(MagitSingleCommit magit_commit, ArrayList<Commit>commits ) {
         String prev_commit_sha1;
 
         for (int i = 0; i < magit_commit.getPrecedingCommits().getPrecedingCommit().size(); i++) {

@@ -77,13 +77,16 @@ public class Library extends DataStorage {
     public Library(boolean is_root) throws NoSuchAlgorithmException {
         //blobs_childs = new ArrayList<Blob>();
         //libraries_childs = new ArrayList<Library>();
-        childs = new ArrayList<DataStorage>();
+        //childs = new ArrayList<DataStorage>();
 
         this.is_root=is_root;
         initialize_sha1();
     }
 
     public void add_child(DataStorage node){
+        if(childs==null){
+            childs = new ArrayList<DataStorage>();
+        }
         childs.add(node);
     }
 
@@ -139,7 +142,34 @@ public class Library extends DataStorage {
 
     public boolean directory_content_is_changed(Library node, String path) {
         boolean modified=false;
+        String file_name;
+        boolean found = false;
+        File file = new File(path);
 
+
+        //check if new files added
+        if(file!=null){
+            for (final File fileEntry : file.listFiles()) {
+                file_name = fileEntry.getName();
+
+                for (int i = 0; i <node.getChilds().size() && !file_name.equals(".magit") && !found ; i++) {
+
+                    if(node.getChilds().get(i).getName().equals(file_name)){
+                        found =true;
+                    }
+                }
+
+                if (!found && !file_name.equals(".magit")) {
+                    return true;
+                }
+
+                found=false;
+            }
+        }
+
+
+
+        //check old files and directories exist
         for (int i = 0; i <node.getChilds().size() && !modified; i++) {
 
             if (node.getChilds().get(i).getType().equals("blob")) {

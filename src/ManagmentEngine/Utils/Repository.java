@@ -4,10 +4,8 @@
 package ManagmentEngine.Utils;
 
 import MagitRepository.MagitSingleCommit;
-import ManagmentEngine.RepositoriesManagment.RepositoryExceptions.branch_not_found_exception;
-import ManagmentEngine.RepositoriesManagment.RepositoryExceptions.file_not_exist_exception;
-import ManagmentEngine.RepositoriesManagment.RepositoryExceptions.head_branch_deletion_exception;
-import ManagmentEngine.RepositoriesManagment.RepositoryExceptions.illegal_branch_deletion_exception;
+import ManagmentEngine.RepositoriesManagment.RepositoryExceptions.*;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,16 +22,49 @@ public class Repository {
     ArrayList<Commit> commits;
     Map<String, DataStorage> exist;
     Commit curr_commit;
-    Branch active_branch;
-    Library curr_library;
+    Branch branches_managment;
+    Library curr_structure;
 
+    public Repository(String repo_path, String repo_name) throws NoSuchAlgorithmException, IOException {
+        this.repo_path = repo_path;
+        this.repo_name = repo_name;
+        commits = new ArrayList<>();
+        exist = new Hashtable<String, DataStorage>();
+        magit_library = new Library(false);
+        branches_managment = new Branch(repo_path+"\\.magit\\branches","master");
+    }
+
+    public static Repository create_repository_structure_from_local(String path, String repository_name, String username, String commit_message) throws ParseException, NoSuchAlgorithmException, IOException, failed_to_create_file_exception {
+        Repository new_repository = new Repository(path, repository_name);
+        File file = new File(path);
+        String commit_details []= {username, commit_message};
+        Commit new_commit = new Commit();
+        Library new_root = (Library) new_repository.create_tree_from_exist(commit_details, file, true);
+
+        new_commit.initialize_commit(
+                new_root, //root
+                commit_message,
+                username,
+                DataStorage.date_to_string(DataStorage.get_current_time()),
+                null); //id field - relevant only for xml pull
+
+        new_repository.add_commit(new_commit,new_root,"master");
+
+        //new_repository.branches_managment.add_branch("master", new_repository.curr_commit);
+        //new_repository.add_root_to_objects();
+        return new_repository;
+    }
 
     public Commit get_current_commit(){
         return curr_commit;
     }
 
     public Branch getBranches() {
-        return active_branch;
+        return branches_managment;
+    }
+
+    public Library getCurr_structure() {
+        return curr_structure;
     }
 
     public String getRepo_name() {
@@ -41,32 +72,32 @@ public class Repository {
     }
 
     public Map get_all_branches(){
-        return active_branch.getBranches();
+        return branches_managment.getBranches();
     }
 
     public Library get_nagit_library() {
         return magit_library;
     }
 
-    public void add_commit(Commit commit, Library new_root, String branch_name) throws NoSuchAlgorithmException, IOException {
+    public void add_commit(Commit commit, Library new_root, String branch_name) throws NoSuchAlgorithmException, IOException, failed_to_create_file_exception {
         Library objects_folder, branches_folder;
 
-        if(magit_library==null){
-            exist = new Hashtable<String, DataStorage>();
-            active_branch=new Branch(repo_path+"\\.magit\\branches\\head");
-            magit_library = new Library(true);
+        if(magit_library.getChilds()==null){
+            //magit_library = new Library(true);
             objects_folder = new Library(false);
             branches_folder = new Library(false);
-            //commits= commits1;
             commits=new ArrayList<Commit>();
             magit_library.add_child(objects_folder);
             magit_library.add_child(branches_folder);
         }
 
-        //active_branch.update_commit_pointer(commit);
-        curr_library = new_root;
+        //curr_structure = new_root;
+
+        //update commit pointer
+        branches_managment.add_commit(branch_name,commit, true);
         add_commited_files(new_root);
         commits.add(commit);
+        switch_commit(commit);
         objects_folder = (Library) magit_library.getChilds().get(0);
         objects_folder.add_child(new_root);
     }
@@ -112,13 +143,44 @@ public class Repository {
         return repo_path;
     }
 
-    public void switch_commit(Commit commit) {
+    public void switch_commit(Commit commit) throws IOException, failed_to_create_file_exception {
+        delete_curr_strcuture();
         curr_commit=commit;
+        update_new_structure();
+        create_new_strcuture_local(exist.get(curr_commit.getMain_library_sha1()),repo_path);
 
     }
 
-    private void synchronize_tree_by_magit(String main_library_sha1) {
+    private void create_new_strcuture_local(DataStorage node, String curr_path) throws IOException, failed_to_create_file_exception {
 
+        File file;
+        file=new File(curr_path+"\\"+node.getName());
+
+        if(node.type.equals("blob")){
+            if(!file.createNewFile()){
+                    throw new failed_to_create_file_exception("Failes to create file after switch commit");
+            }
+            return;
+        }
+
+        if(!file.mkdir()) {
+            throw new failed_to_create_file_exception("Failed to create directory after switch commit");
+        }
+
+
+        Library curr_lib = (Library)node;
+
+        for (int i = 0; i < curr_lib.getChilds().size(); i++) {
+            create_new_strcuture_local(curr_lib.getChilds().get(i), curr_path+"\\"+curr_lib.getName());
+        }
+    }
+
+    private void delete_curr_strcuture() throws IOException {
+        FileUtils.deleteDirectory(new File(repo_path));
+    }
+
+    private void update_new_structure() {
+        curr_structure = (Library) exist.get(curr_commit.getMain_library_sha1());
     }
 
     public DataStorage create_tree_from_exist(String commit_details[], File file, boolean is_root) throws IOException, ParseException, NoSuchAlgorithmException {
@@ -149,9 +211,9 @@ public class Repository {
         return new_lib;
     }
 
-    public void add_branch(String new_branch, String commit_id) throws IOException {
+    public void add_branch(String new_branch, String commit_id) throws IOException, branch_name_exist_exception {
         Commit point_to = find_commit_by_id(commit_id);
-        active_branch.add_branch(new_branch,point_to);
+        branches_managment.add_branch(new_branch,point_to);
     }
 
     private Commit find_commit_by_id(String commit_id) {
@@ -165,19 +227,19 @@ public class Repository {
     }
 
     public void branch_init(String branch_name) throws IOException, branch_not_found_exception {
-        active_branch.switch_branch(branch_name);
+        branches_managment.switch_branch(branch_name);
     }
 
-    public void add_new_branch(String new_branch) throws IOException {
+    public void add_new_branch(String new_branch) throws IOException, branch_name_exist_exception {
         add_branch(new_branch,curr_commit.getId());
     }
 
     public void delete_branch(String branch_name) throws illegal_branch_deletion_exception {
-        if(active_branch.getHead_name().equals(branch_name)){
+        if(branches_managment.getHead_name().equals(branch_name)){
             throw new illegal_branch_deletion_exception("The branch youre trying to delete is the head branch.");
         }
 
-        active_branch.delete_branch(branch_name);
+        branches_managment.delete_branch(branch_name);
 
         //Commit co
     }
@@ -190,16 +252,50 @@ public class Repository {
         throw new file_not_exist_exception("The file not exist in this repository.");
     }
 
-    public void switch_branch(String branch_name) throws IOException, head_branch_deletion_exception, branch_not_found_exception {
-        if(active_branch.getBranches().containsKey(branch_name)){
-            switch_commit(active_branch.getBranches().get(branch_name).getLast());
-            active_branch.switch_branch(branch_name);
+    public void switch_branch(String branch_name) throws IOException, head_branch_deletion_exception, branch_not_found_exception, failed_to_create_file_exception {
+        if(branches_managment.getBranches().containsKey(branch_name)){
+            switch_commit(branches_managment.getBranches().get(branch_name).getLast());
+            branches_managment.switch_branch(branch_name);
+
             return;
         }
 
         throw new head_branch_deletion_exception("Youre trying to delete head branch.\nFailed to delete branch");
 
     }
+
+    public void create_objects_content_local() {
+        Library objects = (Library) magit_library.getChilds().get(0);
+
+        for (int i = 0; i <objects.getChilds().size() ; i++) {
+            //regular files and directories
+            create_local_magit_content_rec(objects.getChilds().get(i), getRepo_path()+"\\.magit\\objects");
+
+            //commits files
+            create_local_magit_content_rec(commits.get(i),getRepo_path()+"\\.magit\\objects");
+        }
+
+    }
+
+    private void create_local_magit_content_rec(DataStorage folder, String path) {
+        Library file;
+
+        if (folder.getType().equals("blob")) {
+            Blob.create_and_write_to_file(folder, path, folder.getSha1());
+            return;
+        }
+
+        else if(folder.getType().equals("library")){
+            file = (Library) folder;
+
+            for (int i = 0; i <file.getChilds().size() ; i++) {
+                create_local_magit_content_rec(file.getChilds().get(i),path);
+            }
+        }
+
+        Blob.create_and_write_to_file(folder, path, folder.getSha1() );
+    }
+
 }
 
 

@@ -31,20 +31,6 @@ public class Blob extends DataStorage{
         return (get_sha1(FileUtils.readFileToString(file, StandardCharsets.UTF_8)));
     }
 
-    public Blob create_commited_blob(String filename, String path, String last_updater) throws NoSuchAlgorithmException, IOException, ParseException {
-        Blob commmited_blob = new Blob();
-        File new_file = new File(path+"\\"+filename);
-        String file_content = FileUtils.readFileToString(new_file, StandardCharsets.UTF_8);
-        commmited_blob.setTextual_content(file_content);
-        commmited_blob.setLast_update(DataStorage.get_current_time());
-        commmited_blob.setLast_updater(last_updater);
-        commmited_blob.setName(filename);
-        commmited_blob.setType("blob");
-        commmited_blob.setSha1(super.get_sha1(file_content));
-
-        return commmited_blob ;
-    }
-
     static public Blob initialize_blob(MagitBlob curr_blob) throws NoSuchAlgorithmException {
         Blob new_blob=new Blob();
         try {
@@ -71,8 +57,6 @@ public class Blob extends DataStorage{
     }
 
     private void initialize_blob(String content, String sha1, String name, String type, Date current_time, String updater) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        //Blob  = new Blob();
-
         setTextual_content(content);
         setSha1(sha1);
         setName(name);

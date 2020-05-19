@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="25532d93-9b9e-4c8c-9d2e-e26d3eb96ccc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/branch_name_exist_exception.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/everything_up_to_date_exception.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/RepositoriesManagment/repository_manager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/Utils/Blob.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/Utils/Blob.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/Utils/Branch.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/Utils/Branch.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/Utils/Commit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/Utils/Commit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/Utils/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/Utils/Library.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/Utils/Repository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/M.A.Git/ManagmentEngine/Utils/Repository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/M.A.Git/UI/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/M.A.Git/UI/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/repository_manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Blob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Blob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Branch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Commit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Library.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="25532d93-9b9e-4c8c-9d2e-e26d3eb96ccc" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -134,8 +116,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="459" lean-forward="true" selection-start-line="459" selection-end-line="459" />
+            <state relative-caret-position="243">
+              <caret line="274" lean-forward="true" selection-start-line="274" selection-end-line="274" />
               <folding>
                 <element signature="method#initialize_repository_from_local#0;class#RepositoryManager#0" />
                 <element signature="method#initialize_repository_from_scratch_by_xml#0;class#RepositoryManager#0" />
@@ -462,7 +444,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589903918983" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589904122239" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -524,12 +506,12 @@
       <workItem from="1589429735061" duration="12886000" />
       <workItem from="1589745540961" duration="4104000" />
       <workItem from="1589753187447" duration="25553000" />
-      <workItem from="1589890503245" duration="3509000" />
+      <workItem from="1589890503245" duration="3710000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208291000" />
+    <option name="totallyTimeSpent" value="208492000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -1051,8 +1033,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="459" lean-forward="true" selection-start-line="459" selection-end-line="459" />
+        <state relative-caret-position="243">
+          <caret line="274" lean-forward="true" selection-start-line="274" selection-end-line="274" />
           <folding>
             <element signature="method#initialize_repository_from_local#0;class#RepositoryManager#0" />
             <element signature="method#initialize_repository_from_scratch_by_xml#0;class#RepositoryManager#0" />

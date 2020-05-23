@@ -16,6 +16,10 @@ public class Commit extends DataStorage {
     private String main_library_sha1;
     private String id;
 
+    public ArrayList<String> getPrecedings_commits_sha1() {
+        return precedings_commits_sha1;
+    }
+
     public String getCommit_essence() {
         return commit_essence;
     }

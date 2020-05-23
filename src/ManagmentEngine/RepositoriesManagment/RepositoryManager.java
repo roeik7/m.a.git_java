@@ -12,7 +12,12 @@ import ManagmentEngine.RepositoriesManagment.RepositoryExceptions.*;
 import ManagmentEngine.Utils.*;
 import ManagmentEngine.XML_Managment.xml_details;
 import org.apache.commons.io.FileUtils;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,10 +25,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 public class RepositoryManager {
     ArrayList<Repository> repositories;
@@ -34,10 +36,9 @@ public class RepositoryManager {
 
     //commit_details[0] - user_name
     //commit_details[1] - commit message
-    //check if there are open changes in working stage - if so -> create the tree that is spread from the tree root
+    //check if there are open changes in working stage - if so -> create the tree that is spread from the tree root (now the changes recorded to the repository)
     //after new tree creation - add new commit with the specified details(creator, current time)
     public void commit_changes(String []commit_details) throws NoSuchAlgorithmException, IOException, ParseException, no_active_repository_exception, everything_up_to_date_exception, failed_to_create_file_exception {
-
         if(repository_load_successfully){
             String changes[] = working_copy_area_status();
             Library new_root;
@@ -188,9 +189,208 @@ public class RepositoryManager {
         repository_load_successfully=true;
     }
 
+    public void export_active_repoistory_to_xml() throws no_active_repository_exception {
+        try {
 
-    public void export_active_repoistory_to_xml(){
-        
+            if(repository_load_successfully){
+                DocumentBuilderFactory do_factory=DocumentBuilderFactory.newInstance();
+                DocumentBuilder doc_builder = do_factory.newDocumentBuilder();
+                Document doc = doc_builder.newDocument();
+                org.w3c.dom.Element root = doc.createElement("MagitRepository");
+                root.setAttribute("name", curr_repository.getRepo_name());
+                doc.appendChild(root);
+                org.w3c.dom.Element location = doc.createElement("location");
+                location.appendChild(doc.createTextNode(curr_repository.getRepo_path()));
+                root.appendChild(location);
+                org.w3c.dom.Element magit_blobs = doc.createElement("MagitBlobs");
+
+                //add each blob to magit blobs
+                add_blobs_element(magit_blobs,doc);
+                root.appendChild(magit_blobs);
+
+                Element magit_folders = doc.createElement("MagitFolders");
+
+                //add each folder to magit folders
+                add_folders_elements(magit_folders,doc);
+                root.appendChild(magit_folders);
+                Element magit_commits = doc.createElement("MagitCommits");
+
+                //add each commit to magit comits
+                add_commits_elements(magit_commits,doc);
+                root.appendChild(magit_commits);
+
+                Element magit_branches = doc.createElement("MagitBranches");
+                Element head_name = doc.createElement("head");
+                head_name.appendChild(doc.createTextNode(curr_repository.getBranches().getHead_name()));
+
+                //add each branch to magit branches
+                magit_branches.appendChild(head_name);
+                add_branches_elements(magit_branches,doc);
+                root.appendChild(magit_branches);
+
+                return;
+            }
+
+            throw new no_active_repository_exception("Failed to export repository to xml: there is no active repository");
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void add_branches_elements(Element magit_branches, Document doc) {
+
+        Element single_branch, name, pointed_to_commit;
+        Set <String> branches = curr_repository.getBranches().getBranches().keySet();
+
+        for(String branch_name : branches){
+            single_branch = doc.createElement("MagitSingleBranch");
+
+            name = doc.createElement("name");
+            name.appendChild(doc.createTextNode(branch_name));
+            single_branch.appendChild(name);
+
+            pointed_to_commit = doc.createElement("pointed-commit");
+            pointed_to_commit.setAttribute("id",curr_repository.getBranches().getBranches().get(branch_name).getLast().getSha1());
+
+            single_branch.appendChild(pointed_to_commit);
+
+            magit_branches.appendChild(single_branch);
+        }
+
+
+
+    }
+
+    private void add_commits_elements(Element magit_commits, Document doc) {
+        Element curr_commit_element, root_folder_id, message,author,date_of_creation,precidings_commits, single_preciding;
+
+        ArrayList<Commit> all_commits = curr_repository.get_commits();
+
+        for (int i = 0; i < all_commits.size(); i++) {
+            curr_commit_element = doc.createElement("MagitSingleCommit");
+
+            //initialize single commit
+            curr_commit_element.setAttribute("id", all_commits.get(i).getSha1());
+
+            //root folder of current commit
+            root_folder_id = doc.createElement("root-folder");
+            root_folder_id.setAttribute("id", all_commits.get(i).getMain_library_sha1());
+            curr_commit_element.appendChild(root_folder_id);
+
+            //commit message
+            message=doc.createElement("message");
+            message.appendChild(doc.createTextNode(all_commits.get(i).getCommit_essence()));
+            curr_commit_element.appendChild(message);
+
+            //author of current commit
+            author = doc.createElement("author");
+            author.appendChild(doc.createTextNode(all_commits.get(i).getLast_updater()));
+            curr_commit_element.appendChild(author);
+
+            //date of creation element
+            date_of_creation = doc.createElement("date-of-creation");
+            date_of_creation.appendChild(doc.createTextNode(DataStorage.date_to_string(all_commits.get(i).getLast_update())));
+            curr_commit_element.appendChild(date_of_creation);
+
+            precidings_commits = doc.createElement("preceding-commits");
+
+            for (int j = 0; j <all_commits.get(i).getPrecedings_commits_sha1().size() ; j++) {
+                single_preciding = doc.createElement("preceding-commit");
+                single_preciding.setAttribute("id", all_commits.get(i).getPrecedings_commits_sha1().get(i));
+
+                precidings_commits.appendChild(single_preciding);
+            }
+
+            curr_commit_element.appendChild(precidings_commits);
+            magit_commits.appendChild(curr_commit_element);
+        }
+    }
+
+    private void add_folders_elements(Element magit_folders, Document doc) {
+        Element curr_folder_element, name, last_updater, last_update_date, items, item;
+        Library curr_lib;
+        Set <String>exists = curr_repository.getExist().keySet();
+
+        for(String key : exists){
+            if (curr_repository.getExist().get(key).getType().equals("library")){
+                curr_lib = (Library) curr_repository.getExist().get(key);
+
+                //single folder element
+                curr_folder_element= doc.createElement("MagitFolder");
+                curr_folder_element.setAttribute("id", curr_lib.getSha1());
+                curr_folder_element.setAttribute("is-root", curr_lib.isIs_root()?"true":"false");
+
+                //name element
+                name = doc.createElement("name");
+                name.appendChild(doc.createTextNode(curr_lib.getName()));
+                curr_folder_element.appendChild(name);
+
+                //last updater element
+                last_updater=doc.createElement("last-updater");
+                last_updater.appendChild(doc.createTextNode(curr_lib.getLast_updater()));
+                curr_folder_element.appendChild(last_updater);
+
+                //last date element
+                last_update_date=doc.createElement("last-update-date");
+                last_update_date.appendChild(doc.createTextNode(DataStorage.date_to_string(curr_lib.getLast_update())));
+                curr_folder_element.appendChild(last_update_date);
+
+                //items element
+                items = doc.createElement("items");
+
+                for (int i = 0; i <curr_lib.getChilds().size() ; i++) {
+
+                    item = doc.createElement("item");
+                    item.setAttribute("id",curr_lib.getChilds().get(i).getSha1());
+                    item.setAttribute("type", curr_lib.getChilds().get(i).getType());
+                    items.appendChild(item);
+                }
+
+                curr_folder_element.appendChild(items);
+
+                //add blob element to blobs
+                magit_folders.appendChild(curr_folder_element);
+            }
+        }
+    }
+
+    private void add_blobs_element(Element magit_blobs, Document doc) {
+        Element curr_blob_element, name, last_updater, last_update_date, content;
+        Blob curr_blob;
+        Set <String>exists = curr_repository.getExist().keySet();
+
+        for(String key : exists){
+            if (curr_repository.getExist().get(key).getType().equals("blob")){
+                curr_blob = (Blob)curr_repository.getExist().get(key);
+
+                //initialize single blob element
+                curr_blob_element= doc.createElement("MagitBlob");
+                curr_blob_element.setAttribute("id", curr_blob.getSha1());
+
+                //name element
+                name = doc.createElement("name");
+                name.appendChild(doc.createTextNode(curr_blob.getName()));
+                curr_blob_element.appendChild(name);
+
+                last_updater=doc.createElement("last-updater");
+                last_updater.appendChild(doc.createTextNode(curr_blob.getLast_updater()));
+                curr_blob_element.appendChild(last_updater);
+
+                last_update_date=doc.createElement("last-update-date");
+                last_update_date.appendChild(doc.createTextNode(DataStorage.date_to_string(curr_blob.getLast_update())));
+                curr_blob_element.appendChild(last_update_date);
+
+                content = doc.createElement("content");
+                content.appendChild(doc.createTextNode(curr_blob.getTextual_content()));
+                curr_blob_element.appendChild(content);
+
+
+                //add blob element to blobs
+                magit_blobs.appendChild(curr_blob_element);
+            }
+        }
     }
 
     //initialize repository details (name, path, libraries, blobs, commits, branches..) derives from the xml files
@@ -260,7 +460,7 @@ public class RepositoryManager {
     return branches_details;
     }
 
-    public void add_new_branch(String new_branch) throws no_active_repository_exception {
+    public void add_new_branch(String new_branch) throws no_active_repository_exception, IOException, branch_name_exist_exception {
         try {
             if(repository_load_successfully){
                 curr_repository.add_new_branch(new_branch);
@@ -268,8 +468,8 @@ public class RepositoryManager {
             else{
                 throw new no_active_repository_exception("There is no active repository, so there is no branches to show.");
             }
-        } catch (IOException | branch_name_exist_exception e) {
-            System.out.println("Error to add new branch.\n");
+        } catch (IOException e) {
+            System.out.println("I/O Error: Failed to add new branch.\n");
             e.printStackTrace();
         }
     }
@@ -317,11 +517,17 @@ public class RepositoryManager {
     }
 
     //if the given branch name exist - switch to this branch
+    //if working tree isn't clean - failure
     //delete from local the old commit belong to old branch and create the structure derives from the new branch
     //in addition update the curr root in repository to be this that last commit point to
-    public void checkout(String branch_name) throws head_branch_deletion_exception, branch_not_found_exception, failed_to_create_file_exception {
+    public void checkout(String branch_name) throws head_branch_deletion_exception, branch_not_found_exception, failed_to_create_file_exception, failed_to_switch_branch_exception {
         try {
-            curr_repository.switch_branch(branch_name);
+            if(working_copy_area_status()==null){
+                curr_repository.switch_branch(branch_name);
+            }
+            else{
+                throw new failed_to_switch_branch_exception("Need changes to be commited before switch to another branch");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

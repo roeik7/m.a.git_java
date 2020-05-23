@@ -34,6 +34,16 @@ public class Repository {
         branches_managment = new Branch(repo_path+"\\.magit\\branches","master");
     }
 
+
+    //head_in_target - target ancestor of head
+    //target_in_head - head ancestor of target
+    //none - no fast forward
+    enum FAST_FORWARD{
+        TARGET_IN_HEAD,
+        HEAD_IN_TARGET,
+        NONE
+    }
+
     public static Repository create_repository_structure_from_local(String path, String repository_name, String username, String commit_message) throws ParseException, NoSuchAlgorithmException, IOException, failed_to_create_file_exception {
         Repository new_repository = new Repository(path, repository_name);
         File file = new File(path);
@@ -83,7 +93,6 @@ public class Repository {
         Library objects_folder, branches_folder;
 
         if(magit_library.getChilds()==null){
-            //magit_library = new Library(true);
             objects_folder = new Library(false);
             branches_folder = new Library(false);
             commits=new ArrayList<Commit>();
@@ -91,10 +100,10 @@ public class Repository {
             magit_library.add_child(branches_folder);
         }
 
-        //curr_structure = new_root;
-
-        //update commit pointer
+        //update commit pointer in current branch
         branches_managment.add_commit(branch_name,commit, true);
+
+        //add new files to exist(hash table) and add files locally in .magit directory
         add_commited_files(new_root);
         commits.add(commit);
         switch_commit(commit);
@@ -106,6 +115,7 @@ public class Repository {
         //add folder to hashtable
         if(!exist.containsKey(new_root.getSha1())){
             exist.put(new_root.getSha1(), new_root);
+            Blob.create_and_write_to_file(new_root,repo_path+"\\.magit\\objects",new_root.sha1);
         }
 
         if(new_root.getType().equals("blob")){
@@ -211,9 +221,8 @@ public class Repository {
         return new_lib;
     }
 
-    public void add_branch(String new_branch, String commit_id) throws IOException, branch_name_exist_exception {
-        Commit point_to = find_commit_by_id(commit_id);
-        branches_managment.add_branch(new_branch,point_to);
+    public Map<String, DataStorage> getExist() {
+        return exist;
     }
 
     private Commit find_commit_by_id(String commit_id) {
@@ -230,8 +239,8 @@ public class Repository {
         branches_managment.switch_branch(branch_name);
     }
 
-    public void add_new_branch(String new_branch) throws IOException, branch_name_exist_exception {
-        add_branch(new_branch,curr_commit.getId());
+    public void add_new_branch(String branch_name) throws IOException, branch_name_exist_exception {
+        branches_managment.add_branch(branch_name,  curr_commit);
     }
 
     public void delete_branch(String branch_name) throws illegal_branch_deletion_exception {

@@ -35,7 +35,7 @@ public abstract class DataStorage {
         return res;
     }
 
-    static String date_to_string(Date date){
+    public static String date_to_string(Date date){
         String str_date;
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy-HH:mm:ss:SSS");
 

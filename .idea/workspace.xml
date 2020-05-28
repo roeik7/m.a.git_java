@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="25532d93-9b9e-4c8c-9d2e-e26d3eb96ccc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryExceptions/failed_to_switch_branch_exception.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Commit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/DataStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/DataStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManagmentEngine/Utils/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="25532d93-9b9e-4c8c-9d2e-e26d3eb96ccc" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +47,7 @@
     <session id="981799929">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.21" value="1" />
@@ -100,11 +92,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UI/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state>
+              <caret lean-forward="true" />
               <folding>
                 <element signature="e#2004#2365#0" />
                 <element signature="e#2371#3708#0" />
@@ -120,16 +112,17 @@
                 <element signature="e#8072#9210#0" />
                 <element signature="e#9216#9702#0" />
                 <element signature="method#handle_load_xml#0;class#Main#0" />
+                <element signature="method#show_manu#0;class#Main#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="569">
-              <caret line="793" lean-forward="true" selection-start-line="793" selection-end-line="793" />
+            <state relative-caret-position="518">
+              <caret line="786" column="21" selection-start-line="786" selection-start-column="21" selection-end-line="786" selection-end-column="21" />
               <folding>
                 <element signature="method#commit_changes#0;class#RepositoryManager#0" />
                 <element signature="method#working_copy_area_status#0;class#RepositoryManager#0" />
@@ -280,7 +273,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>swit</find>
       <find>stdin</find>
       <find>sho</find>
       <find>check</find>
@@ -310,6 +302,7 @@
       <find>branch</find>
       <find>switch</find>
       <find>from_exis</find>
+      <find>export</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -441,7 +434,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1590228436960" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1590230763043" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -505,16 +498,15 @@
       <workItem from="1589753187447" duration="25553000" />
       <workItem from="1589890503245" duration="15619000" />
       <workItem from="1590068746930" duration="3376000" />
-      <workItem from="1590222214389" duration="7700000" />
+      <workItem from="1590222214389" duration="7804000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="231477000" />
+    <option name="totallyTimeSpent" value="231581000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
@@ -910,33 +902,10 @@
     <entry file="file://$PROJECT_DIR$/M.A.Git.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#2004#2365#0" />
-            <element signature="e#2371#3708#0" />
-            <element signature="method#handle_export_to_xml#0;class#Main#0" />
-            <element signature="method#handle_commit_chanes#0;class#Main#0" />
-            <element signature="e#3714#4057#0" />
-            <element signature="e#4063#4895#0" />
-            <element signature="e#4901#5784#0" />
-            <element signature="e#5790#6516#0" />
-            <element signature="e#6522#6993#0" />
-            <element signature="e#6999#7468#0" />
-            <element signature="e#7474#8066#0" />
-            <element signature="e#8072#9210#0" />
-            <element signature="e#9216#9702#0" />
-            <element signature="method#handle_load_xml#0;class#Main#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagmentEngine/RepositoriesManagment/RepositoryManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="793" lean-forward="true" selection-start-line="793" selection-end-line="793" />
+        <state relative-caret-position="518">
+          <caret line="786" column="21" selection-start-line="786" selection-start-column="21" selection-end-line="786" selection-end-column="21" />
           <folding>
             <element signature="method#commit_changes#0;class#RepositoryManager#0" />
             <element signature="method#working_copy_area_status#0;class#RepositoryManager#0" />
@@ -972,6 +941,30 @@
             <element signature="method#delete_branch#0;class#RepositoryManager#0" />
             <element signature="method#initialize_old_repository#0;class#RepositoryManager#0" />
             <element signature="method#repository_contain_magit#0;class#RepositoryManager#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+          <folding>
+            <element signature="e#2004#2365#0" />
+            <element signature="e#2371#3708#0" />
+            <element signature="method#handle_export_to_xml#0;class#Main#0" />
+            <element signature="method#handle_commit_chanes#0;class#Main#0" />
+            <element signature="e#3714#4057#0" />
+            <element signature="e#4063#4895#0" />
+            <element signature="e#4901#5784#0" />
+            <element signature="e#5790#6516#0" />
+            <element signature="e#6522#6993#0" />
+            <element signature="e#6999#7468#0" />
+            <element signature="e#7474#8066#0" />
+            <element signature="e#8072#9210#0" />
+            <element signature="e#9216#9702#0" />
+            <element signature="method#handle_load_xml#0;class#Main#0" />
+            <element signature="method#show_manu#0;class#Main#0" />
           </folding>
         </state>
       </provider>

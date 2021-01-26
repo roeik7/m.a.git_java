@@ -26,3 +26,4 @@ After trying to commit again:</br>
 
 
 XML file example:
+![image](https://user-images.githubusercontent.com/48287470/105830475-38749c00-5fce-11eb-88f7-21c71470a20b.png)

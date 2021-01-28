@@ -12,7 +12,7 @@ Main manu:</br>
 
 In order for the commands to be relevant, an old repository needs to be loaded or a new one to be created.
 Currently the option to load repository is using an XML file containing project details (commits, file hierarchy and more).
-Example to xml file in the end of the readme.
+Example to xml file at the end of the file.
 
 
 

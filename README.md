@@ -2,7 +2,7 @@
 
 In this project I developed a console application designed to manage projects, pieces of code, </br>
 track the history of changes, code versions, and support a variety of commands such as commit changes, branches, checkout, working stage, etc. </br>
-The project was done to know the version control system better and how it works. </br>
+The purpose of this project was to better understand Version control systems, what they are, and how they work. </br>
 
 The application start with a main manu-
 
